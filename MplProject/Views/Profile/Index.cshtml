@@ -1,0 +1,111 @@
+﻿@model MplProject.Models.signup
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Edit Profile", "EditProfile", "Profile", new {@class = "nav-link active"})
+                </li>
+
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    @*@foreach (var a in Model)
+                    {*@
+                        <h5 class="mb-3">@Model.firstName <span> </span> @Model.lastName</h5>
+                        <h5 class="mb-3">Email</h5> <span>  @Model.email</span>
+                    <h5 class="mb-3">Phone No</h5> <span>  @Model.phoneNo</span>
+                    <h5 class="mb-3">Status</h5> <span>  @Model.status</span>
+                   @* }*@
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>About</h6>
+                                <p>
+                                    Web Designer, UI/UX Engineer
+                                </p>
+                                <h6>Hobbies</h6>
+                                <p>
+                                    Indie music, skiing and hiking. I love the great outdoors.
+                                </p>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
+                                <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
+                                <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
+                            </div><br /><br />
+                            <div class="col-md-12">
+                                <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
+                                <table class="table table-sm table-hover table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                        @*<tr>
+                                                <td>
+                                                    <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
+                                                </td>
+                                            </tr>*@
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <!--/row-->
+
+
+
+                        <div class="col-lg-4 order-lg-1 text-center">
+                         <img src="~/images/@Model.path" width="150px" height="150px" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                        @using (Html.BeginForm("ImageUpload", "signup", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Put)
+                                <h6 class="mt-2">Upload a different photo</h6>
+                                <label class="custom-file">
+                                    <input type="hidden" value="@Model.id" name="id" />
+                                    <input style="display : none; " type="file"  name="file" class="custom-file-input">
+                                    <span class="custom-file-control">Choose file</span><br />
+                                    <input type="submit" value="upload file" class="button" />
+                                </label>
+                          }
+                            <br /><br />
+                            <div>
+                                @Html.ActionLink("Logout", "logout", "login")
+                                <br/>
+                                @using (Html.BeginForm("DeleteProfile", "Profile", FormMethod.Post))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <button>Delete Profile</button>
+                                }
+                            </div>
+                        </div>
+            
+
+
+
+
+

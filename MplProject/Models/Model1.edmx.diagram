@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="23974794f0244dbf93ebe5eba291376a" Name="Diagram1">
+        <EntityTypeShape EntityType="CheckAndBalanceModel.attendence" Width="1.5" PointX="8" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.bill" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.booking_engine" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.company_details" Width="1.5" PointX="2.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.customer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.empLogin" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.employee" Width="1.5" PointX="8.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.manager" Width="1.5" PointX="4.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.order" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.payment" Width="1.5" PointX="6.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.product" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.signup" Width="1.5" PointX="8.75" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_attendence_empLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_bills_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_bills_products" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_booking_engine_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_booking_engine_products" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_orders_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_orders_products" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

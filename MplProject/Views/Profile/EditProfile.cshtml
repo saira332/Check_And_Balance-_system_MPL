@@ -1,0 +1,96 @@
+﻿@model MplProject.Models.signup
+
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                
+                <li class="nav-item">
+                        @*<a href="" data-target="#messages" data-toggle="tab" class="nav-link">Contact info</a>*@
+                    @Html.ActionLink("Profile", "Index", "Profile", new { @class = "nav-link active" })
+                    </li>
+                <li class="nav-item">
+                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit Profile</a>
+                </li>
+            </ul>
+
+            <div class="tab-pane" id="edit">
+                @*<form role="form">*@
+                @using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post))
+                {
+                    @Html.HttpMethodOverride(HttpVerbs.Put)
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                        <div class="col-lg-9">
+                            @Html.TextBoxFor(model => model.firstName, new { placeholder = "First name" , @class = "form-control" })
+                        </div>
+                    </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.lastName, new { placeholder = "Last name", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.email, new { placeholder = "email@gmail.com", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Phone Number</label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.phoneNo, new {placeholder="Phone" , @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(model => model.username, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                    <div class="col-lg-9">
+                                        @Html.PasswordFor(model => model.password, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                                    <div class="col-lg-9">
+                                        @Html.PasswordFor(model => model.password, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                                    <div class="col-lg-9">
+                                        <input type="reset" class="btn btn-secondary" value="Cancel">
+                                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                                    </div>
+                                </div>
+                }
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 order-lg-1 text-center">
+        <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        <h6 class="mt-2">Upload a different photo</h6>
+        <label class="custom-file">
+            <input style="display : none; " type="file" id="file" class="custom-file-input">
+            <span class="custom-file-control">Choose file</span>
+        </label>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div>
+            @Html.ActionLink("Delete Profile", "DeleteProfile", "Profile")
+        </div>
+    </div>
+</div>
+        
+
+

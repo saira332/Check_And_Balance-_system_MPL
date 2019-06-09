@@ -1,0 +1,161 @@
+﻿@model MplProject.Models.signup
+
+@{
+    ViewBag.Title = "Index";
+    List<SelectListItem> l1 = new List<SelectListItem>();
+    l1.Add(new SelectListItem()
+    {
+        Text = "Select Security question",
+        Value = "0"
+    });
+    l1.Add(new SelectListItem()
+    {
+        Text = "What's your childhood friend's name?",
+        Value = "What's your childhood friend's name?"
+    });
+    l1.Add(new SelectListItem()
+    {
+        Text = "What is your first hometown?",
+        Value = "What is your first hometown?"
+    });
+
+    List<SelectListItem> l2 = new List<SelectListItem>();
+    l2.Add(new SelectListItem()
+    {
+        Text = "Select Status",
+        Value = "0"
+    });
+    l2.Add(new SelectListItem()
+    {
+        Text = "Admin",
+        Value = "Admin"
+    });
+    l2.Add(new SelectListItem()
+    {
+        Text = "Employee",
+        Value = "Employee"
+    });
+    l2.Add(new SelectListItem()
+    {
+        Text = "Customer",
+        Value = "Customer"
+    });
+}
+
+
+<section class="post-wrapper-top">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Register</li>
+            </ul>
+            <h2>REGISTER</h2>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <!-- search -->
+            <div class="search-bar">
+                <form action="" method="get">
+                    <fieldset>
+                        <input type="image" src="img/pixel.gif" class="searchsubmit" alt="" />
+                        <input type="text" class="search_text showtextback" name="s" id="s" value="Search..." />
+                    </fieldset>
+                </form>
+            </div>
+            <!-- / end div .search-bar -->
+        </div>
+    </div>
+</section>
+<!-- end post-wrapper-top -->
+
+<section class="section1">
+    <div class="container clearfix">
+        <div class="content col-lg-12 col-md-12 col-sm-12 clearfix">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <h4 class="title">
+                    <span>Why Join Us?</span>
+                </h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s..</p>
+                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <h4 class="title">
+                    <span>Benefits</span>
+                </h4>
+                <ul class="check">
+                    <li><a href="#">5+ homepage style (check features menu)</a></li>
+                    <li><a href="#">Compatible any eCommerce solutions</a></li>
+                    <li><a href="#">Limitless color combinations</a></li>
+                    <li><a href="#">Limitless page templates (15+ custom pages)</a></li>
+                    <li><a href="#">100% responsive layout design</a></li>
+                    <li><a href="#">Awesome slideshows for your contents</a></li>
+                    <li><a href="#">Super awesome portfolio sections</a></li>
+                    <li><a href="#">700+ custom font icons included</a></li>
+                </ul>
+            </div>
+            <!-- end login -->
+
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <h4 class="title">
+                    <span>Register Form</span>
+                </h4>
+                @using (Html.BeginForm("usersignup", "signup", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.firstName, new { placeholder = "First Name" , @class= "form-control" })
+                        @*<input type="text" class="form-control" placeholder="First name">*@
+                    </div>
+                    <div class="form-group">
+                        @*<input type="text" class="form-control" placeholder="Last name">*@
+                        @Html.TextBoxFor(model => model.lastName, new { placeholder = "Last Name" , @class = "form-control" })
+                        
+                    </div>
+                    <div class="form-group">
+                      @*  <input type="text" class="form-control" placeholder="User name">*@
+                       @Html.TextBoxFor(model => model.email, new { placeholder = "Email", @class = "form-control" })
+                        
+                    </div>
+                    <div class="form-group">
+                       @* <input type="email" class="form-control" placeholder="Email">*@
+                        @Html.TextBoxFor(model => model.username, new { placeholder = "Username", @class = "form-control" })
+                        
+                    </div>
+                    <div class="form-group">
+                       @* <input type="password" class="form-control" placeholder="Password">*@
+                        @Html.PasswordFor(model => model.password, new { placeholder = "Password", @class = "form-control" } )
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Re-enter password">
+                    </div>
+                    <div class="form-group">
+                        @* <input type="password" class="form-control" placeholder="Password">*@
+                        @Html.TextBoxFor(model => model.phoneNo, new { placeholder = "Phone No.", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DropDownListFor(model => model.SecQuestion, l1, new { @class = "form-control" })
+                        
+                    </div>
+                    <div class="form-group">
+                        @* <input type="password" class="form-control" placeholder="Password">*@
+                        @Html.TextBoxFor(model => model.SecAnswer, new { placeholder = "Security Answer", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @*<input type="radio" class="form-control" name="">*@
+                        @*@Html.TextBoxFor(model => model.phoneNo, new { placeholder = "Phone No.", @class = "form-control" })*@
+                        @Html.DropDownListFor(model => model.status, l2, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                         <input type="submit" class="button" value="Register an account">
+                    </div>
+                }
+            </div>
+            <!-- end register -->
+        </div>
+        <!-- end content -->
+    </div>
+    <!-- end container -->
+</section>
+<!-- end section -->
+

@@ -1,0 +1,22 @@
+﻿@model MplProject.Models.signup
+
+@{
+    ViewBag.Title = "ImageUpload";
+}
+<center>
+    <br />
+    <img height="150" width="150" src="~/images/@Model.path" />
+    <br /><br />
+    <div class="col-lg-4 order-lg-1 text-center">
+        @using (Html.BeginForm("ImageUpload", "signup", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Put)
+            <label style="text-align: center; margin: auto;">Upload Image</label><br />
+            <input type="hidden" value="@Model.id" name="id" />
+            <input type="file" name="file" class="custom-file-input" style="text-align: center; margin: auto;" /><br />
+
+            <input type="submit" value="upload file" class="button" />
+        }
+        @Html.ActionLink("Next", "Index", "login", new { @class="button"})
+    </div>
+</center>
