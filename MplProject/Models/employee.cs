@@ -28,5 +28,6 @@ namespace MplProject.Models
         public System.DateTime terminated_date { get; set; }
         public string CNIC { get; set; }
         public int bonous { get; set; }
+        public string path { get; set; }
     }
 }

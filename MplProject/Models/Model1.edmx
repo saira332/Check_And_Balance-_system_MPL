@@ -52,6 +52,7 @@
           <Property Name="contact_no" Type="int" Nullable="false" />
           <Property Name="address" Type="varchar(max)" Nullable="false" />
           <Property Name="email" Type="varchar(max)" Nullable="false" />
+          <Property Name="path" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="empLogin">
           <Key>
@@ -79,6 +80,7 @@
           <Property Name="terminated_date" Type="datetime" Nullable="false" />
           <Property Name="CNIC" Type="varchar(max)" Nullable="false" />
           <Property Name="bonous" Type="int" Nullable="false" />
+          <Property Name="path" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="manager">
           <Key>
@@ -131,6 +133,7 @@
           <Property Name="quality" Type="varchar(max)" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="path" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="signup">
           <Key>
@@ -333,6 +336,7 @@
           <NavigationProperty Name="bills" Relationship="Self.FK_bills_customer" FromRole="customer" ToRole="bills" />
           <NavigationProperty Name="booking_engine" Relationship="Self.FK_booking_engine_customer" FromRole="customer" ToRole="booking_engine" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_customer" FromRole="customer" ToRole="orders" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="empLogin">
           <Key>
@@ -361,6 +365,7 @@
           <Property Name="terminated_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CNIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="bonous" Type="Int32" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="manager">
           <Key>
@@ -418,6 +423,7 @@
           <NavigationProperty Name="bills" Relationship="Self.FK_bills_products" FromRole="products" ToRole="bills" />
           <NavigationProperty Name="booking_engine" Relationship="Self.FK_booking_engine_products" FromRole="products" ToRole="booking_engine" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_products" FromRole="products" ToRole="orders" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="signup">
           <Key>
@@ -611,6 +617,7 @@
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.customer">
               <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
@@ -632,6 +639,7 @@
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.employee">
               <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="salary" ColumnName="salary" />
@@ -696,6 +704,7 @@
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.product">
               <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="pro_id" ColumnName="pro_id" />
                 <ScalarProperty Name="pro_name" ColumnName="pro_name" />
                 <ScalarProperty Name="price" ColumnName="price" />

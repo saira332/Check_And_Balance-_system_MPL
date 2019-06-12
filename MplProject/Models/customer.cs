@@ -28,6 +28,7 @@ namespace MplProject.Models
         public int contact_no { get; set; }
         public string address { get; set; }
         public string email { get; set; }
+        public string path { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bill> bills { get; set; }
