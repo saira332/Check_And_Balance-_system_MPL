@@ -24,10 +24,7 @@ namespace MplProject.Controllers
             //var results = (from row in _db.customers select row).ToList();
             return View(CusData);
         }
-        public ActionResult AddCustomer()
-        {
-            return View();
-        }
+       
         [HttpPost]
         public ActionResult AddCustomer(CusomerDTO c)
         {
@@ -35,16 +32,12 @@ namespace MplProject.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index", "Customer");
         }
-        public ActionResult EditCustomer(int id)
-        {
-            var result = _db.customers.Single(customer => customer.id == id);
-            return View(result);
-        }
+        
 
         [HttpPut]
-        public ActionResult EditCustomer(CusomerDTO s)
+        public ActionResult EditCustomer(CusomerDTO s, int id)
         {
-            customer result = _db.customers.Single(customer => customer.id == s.customerData.id);
+            customer result = _db.customers.Single(customer => customer.id == id);
             result.name = s.customerData.name;
             result.gender = s.customerData.gender;
             result.email = s.customerData.email;
@@ -53,11 +46,6 @@ namespace MplProject.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index", "Customer");
         }
-        //public ActionResult DeleteCustomer(int id)
-        //{
-        //    var result = _db.customers.Single(customer => customer.id == id);
-        //    return View(result);
-        //}
         [HttpDelete]
         public ActionResult DeleteCustomer(int id)
         {
