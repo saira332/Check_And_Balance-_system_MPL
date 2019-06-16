@@ -7,50 +7,52 @@ using System.Web.Mvc;
 
 namespace MplProject.Controllers
 {
-    public class EmployeeController : Controller
+    public class ManagerController : Controller
     {
+
+        // GET: Manager
         Models.CheckAndBalanceEntities _db;
-        public EmployeeController()
+        public ManagerController()
         {
             _db = new CheckAndBalanceEntities();
         }
-        // GET: Employee
+
         public ActionResult Index()
         {
-            var ProData = new EmployeeDTO()
+            var ManData = new ManagerDTO()
             {
-                employeeList = _db.employees.ToList()
+                managerList = _db.managers.ToList()
             };
             //var results = (from row in _db.customers select row).ToList();
-            return View(ProData);
+            return View(ManData);
         }
         [HttpPost]
-        public ActionResult AddProduct(EmployeeDTO c)
+        public ActionResult AddManager(ManagerDTO c)
         {
-            _db.employees.Add(c.employeeData);
+            _db.managers.Add(c.managerData);
             _db.SaveChanges();
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction("Index", "Manager");
         }
         [HttpDelete]
-        public ActionResult DeleteEmployee(int id)
+        public ActionResult DeleteManager(int id)
         {
-            var result = _db.employees.Single(employee => employee.E_id == id);
-            _db.employees.Remove(result);
+            var result = _db.managers.Single(manager => manager.M_id == id);
+            _db.managers.Remove(result);
             _db.SaveChanges();
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction("Index", "Manager");
         }
         [HttpPut]
-        public ActionResult EditEmployee(EmployeeDTO s, int id, string name)
+        public ActionResult EditManager(ManagerDTO s, int id, string name)
         {
-            employee result = _db.employees.Single(employee => employee.E_id == id);
-            result.E_name = name;
+            manager result = _db.managers.Single(manager => manager.M_id == id);
+            result.M_name = name;
             //result.pro_name = s.productData.pro_name;
             //result.price = s.productData.price;
             //result.quantity = s.productData.quantity;
             //result.quality = s.productData.quality;
             //result.description = s.productData.description;
             _db.SaveChanges();
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction("Index", "Manager");
         }
     }
 }

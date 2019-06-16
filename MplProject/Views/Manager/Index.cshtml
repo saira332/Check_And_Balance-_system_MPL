@@ -1,0 +1,302 @@
+﻿@model MplProject.Models.ManagerDTO
+
+@{
+    Layout = "~/Views/Shared/_DashboardPartialView.cshtml";
+}
+
+<html>
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage <b>Product</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        @*@Html.ActionLink("Add Customer","AddCustomer","Customer", new {@class= "btn btn-success" })*@
+                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                        <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>contact_no</th>
+                        <th>salary</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                        <th>Insurance</th>
+                        <th>start_date</th>
+                        <th>terminated_date</th>
+                        <th>email</th>
+                        <th>CNIC</th>
+                        <th>bonous</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var a in Model.managerList)
+                    {
+                        <tr>
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                    <label for="checkbox1"></label>
+                                </span>
+                            </td>
+                            <td>@a.M_id</td>
+                            <td>@a.M_name</td>
+                            <td>@a.address</td>
+                            <td>@a.contact_no</td>
+                            <td>@a.salary</td>
+                            <td>@a.DOB</td>
+                            <td>@a.gender</td>
+                            <td>@a.insurance</td>
+                            <td>@a.start_date</td>
+                            <td>@a.terminated_date</td>
+                            <td>@a.email</td>
+                            <td>@a.CNIC</td>
+                            <td>@a.bonous</td>
+                            @*<td><img src="~/images/@a.path" /></td>*@
+                            <td>
+                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.M_id','name':'@a.M_name', 'address' : '@a.address' , 'contact_no' : '@a.contact_no', 'salary' : '@a.salary', 'DOB' : '@a.DOB', 'Gender' : '@a.gender', 'Insurance' : '@a.insurance' , 'startDate' : '@a.start_date', 'TerminatedDate' : '@a.terminated_date', 'Email' : '@a.email', 'CNIC' : '@a.CNIC', 'Bonous' : '@a.bonous'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.M_id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Add Modal HTML -->
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @using (Html.BeginForm("AddManager", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Product</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="file" />
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            @Html.TextBoxFor(model => model.managerData.M_name, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            @Html.TextBoxFor(model => model.managerData.address, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Contact_No</label>
+                            @Html.TextBoxFor(model => model.managerData.contact_no, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Salary</label>
+                            @Html.TextBoxFor(model => model.managerData.salary, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>DOB</label>
+                            @Html.TextBoxFor(model => model.managerData.DOB, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            @Html.TextBoxFor(model => model.managerData.gender, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Insurance</label>
+                            @Html.TextBoxFor(model => model.managerData.insurance, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>StartDate</label>
+                            @Html.TextBoxFor(model => model.managerData.start_date, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>TerminatedDate</label>
+                            @Html.TextBoxFor(model => model.managerData.terminated_date, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            @Html.TextBoxFor(model => model.managerData.email, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>CNIC</label>
+                            @Html.TextBoxFor(model => model.managerData.CNIC, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Bonous</label>
+                            @Html.TextBoxFor(model => model.managerData.bonous, new { @class = "form-control" })
+                        </div>
+                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-success" value="Add">
+                                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal HTML -->
+    <div id="editEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @using (Html.BeginForm("EditManager", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                    @Html.HttpMethodOverride(HttpVerbs.Put)
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Manager</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="file" id="cimage" />
+                        </div>
+                        <input name="id" id="id_ed" class="form-control" />
+                        <div class="form-group">
+                            <label>Name</label>
+                            @Html.TextBoxFor(model => model.managerData.M_name, new { @class = "form-control", id = "name_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            @Html.TextBoxFor(model => model.managerData.address, new { @class = "form-control", id = "price_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>Contact_No</label>
+                            @Html.TextBoxFor(model => model.managerData.contact_no, new { @class = "form-control", id = "quantity_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>Salary</label>
+                            @Html.TextBoxFor(model => model.managerData.salary, new { @class = "form-control", id = "quality_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>DOB</label>
+                            @Html.TextBoxFor(model => model.managerData.DOB, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            @Html.TextBoxFor(model => model.managerData.gender, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>Insurance</label>
+                            @Html.TextBoxFor(model => model.managerData.insurance, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>StartDate</label>
+                            @Html.TextBoxFor(model => model.managerData.start_date, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>TerminatedDate</label>
+                            @Html.TextBoxFor(model => model.managerData.terminated_date, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            @Html.TextBoxFor(model => model.managerData.email, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>CNIC</label>
+                            @Html.TextBoxFor(model => model.managerData.CNIC, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <div class="form-group">
+                            <label>Bonous</label>
+                            @Html.TextBoxFor(model => model.managerData.bonous, new { @class = "form-control", id = "desc_ed" })
+                        </div>
+                        <img id="cimage" />
+                    </div>
+                                        <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                            <input type="submit" class="btn btn-info" value="Save">
+                                        </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal HTML -->
+    <div id="deleteEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @using (Html.BeginForm("DeleteManager", "Manager", FormMethod.Post))
+            {
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Manager</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete these Records?</p>
+                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    </div>
+
+                                    <input name="id" id="id_del" class="form-control" />
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-danger" value="Delete">
+                                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+            function del(a)
+            {
+                document.getElementById("id_del").value = a;
+
+            }
+            function edit(data)
+            {
+
+                document.getElementById("M_id").value = data.M_id;
+                document.getElementById("M_name").value = data.M_name;
+                document.getElementById("address").value = data.address;
+                document.getElementById("contact_no").value = data.contact_no;
+                document.getElementById("salary").value = data.salary;
+                document.getElementById("Gender").value = data.Gender;
+                document.getElementById("Insurance").value = data.insueance;
+                document.getElementById("StartDate").value = data.startDate;
+                document.getElementById("TerminatedDate").value = data.terminatedDate;
+                document.getElementById("Email").value = data.Email;
+                document.getElementById("CNIC").value = data.CNIC;
+                document.getElementById("bonous").value = data.bonous;
+
+                //img = "~/images/" + data.image;
+                //document.getElementById("cimage").src = img;
+
+
+            }
+    </script>
+</body>
+</html>

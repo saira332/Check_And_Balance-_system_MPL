@@ -14,6 +14,9 @@ namespace MplProject.Models
     
     public partial class employee
     {
+        internal int E_id;
+        internal string M_name;
+
         public int id { get; set; }
         public string name { get; set; }
         public int salary { get; set; }
@@ -29,7 +32,5 @@ namespace MplProject.Models
         public string CNIC { get; set; }
         public int bonous { get; set; }
         public string path { get; set; }
-        public int E_id { get; internal set; }
-        public string E_name { get; internal set; }
     }
 }

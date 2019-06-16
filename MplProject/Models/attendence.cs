@@ -14,11 +14,15 @@ namespace MplProject.Models
     
     public partial class attendence
     {
+        internal string path;
+        internal object atendence;
+
         public int id { get; set; }
         public System.DateTime date { get; set; }
         public string aattendence { get; set; }
         public int emp_id { get; set; }
     
         public virtual empLogin empLogin { get; set; }
+        public int Attn_id { get; internal set; }
     }
 }

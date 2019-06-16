@@ -15,6 +15,9 @@ namespace MplProject.Models
     
     public partial class CheckAndBalanceEntities : DbContext
     {
+        internal object employeees;
+        internal object emplyees;
+
         public CheckAndBalanceEntities()
             : base("name=CheckAndBalanceEntities")
         {

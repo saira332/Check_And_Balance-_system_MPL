@@ -5,14 +5,14 @@ using System.Web;
 
 namespace MplProject.Models
 {
-    public class employeeDTO
+    public class ManagerDTO
     {
-        public employee employeeData
+        public manager managerData
         {
             get;
             set;
         }
-        public List<employee> employeeList
+        public List<manager> managerList
         {
             get;
             set;

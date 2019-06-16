@@ -27,5 +27,7 @@ namespace MplProject.Models
         public string email { get; set; }
         public string CNIC { get; set; }
         public int bonous { get; set; }
+        public int M_id { get; internal set; }
+        public string M_name { get; internal set; }
     }
 }
