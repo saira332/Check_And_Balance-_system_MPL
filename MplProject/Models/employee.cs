@@ -29,5 +29,7 @@ namespace MplProject.Models
         public string CNIC { get; set; }
         public int bonous { get; set; }
         public string path { get; set; }
+        public int E_id { get; internal set; }
+        public string E_name { get; internal set; }
     }
 }
