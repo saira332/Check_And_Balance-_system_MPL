@@ -267,6 +267,7 @@
     <Content Include="Content\js\misc.js" />
     <Content Include="Content\js\modernizr.js" />
     <Content Include="Content\js\off-canvas.js" />
+    <Content Include="Content\MaterialIcons.css" />
     <Content Include="Content\owl-carousel\owl-carousel.css" />
     <Content Include="Content\owl-carousel\owl-carousel.js" />
     <Content Include="Content\php-mail-form\validate.js" />
@@ -2142,6 +2143,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\signupController.cs" />
+    <Compile Include="Controllers\ViewProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2154,6 +2156,7 @@
     <Compile Include="Models\booking_engine.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyDTO.cs" />
     <Compile Include="Models\company_details.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2224,7 +2227,6 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
-    <Content Include="Views\Company\AddCompany.cshtml" />
     <Content Include="Views\ForgotPassword\Index.cshtml" />
     <Content Include="Views\ForgotPassword\AccountIdentify.cshtml" />
     <Content Include="Views\ForgotPassword\ResetPasswordThrough.cshtml" />
@@ -2235,7 +2237,6 @@
     <Content Include="Views\Customer\EditCustomer.cshtml" />
     <Content Include="Views\Shared\_DashboardPartialView.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

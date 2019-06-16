@@ -17,49 +17,41 @@ namespace MplProject.Controllers
         }
         public ActionResult Index()
         {
-            var results = (from row in _db.company_details select row).ToList();
-            return View(results);
+            var CoData = new CompanyDTO()
+            {
+                companyList = _db.company_details.ToList()
+            };
+            //var results = (from row in _db.company_details select row).ToList();
+            return View(CoData);
         }
-        //public JsonResult ViewCompany()
-        //{
-        //    List<company_details> ComList = (from row in _db.company_details select row).ToList();
-        //    return Json(ComList, JsonRequestBehavior.AllowGet);
-        //}
-        public ActionResult AddCompany()
-        {
-            return View();
-        }
+       
+       
         [HttpPost]
-        public ActionResult AddCompany(company_details a)
+        public ActionResult AddCompany(CompanyDTO a)
         {
-            _db.company_details.Add(a);
+            _db.company_details.Add(a.companyData);
             _db.SaveChanges();
-            return View();
-        }
-        public ActionResult EditCompany(int id)
-        {
-            var result = _db.company_details.Single(company_details => company_details.company_id == id);
-            return View(result);
-        }
-
-        [HttpPut]
-        public ActionResult EditCompany(company_details s)
-        {
-            company_details result = _db.company_details.Single(company_details => company_details.company_id == s.company_id);
-            result.company_name = s.company_name;
-            result.email = s.email;
-            result.address = s.address;
-            result.contact_no = s.contact_no;
-            _db.SaveChanges();
-            return View();
+            return RedirectToAction("Index", "Company");
         }
         [HttpDelete]
         public ActionResult DeleteCompany(int id)
         {
-            var result = _db.company_details.Single(company_details => company_details.company_id == id);
+            var result = _db.company_details.Single(company_details=> company_details.company_id == id);
             _db.company_details.Remove(result);
             _db.SaveChanges();
-            return Redirect("/");
+            return RedirectToAction("Index", "Company");
+        }
+        [HttpPut]
+        public ActionResult EditCompany(CompanyDTO s, int id)
+        {
+            company_details result = _db.company_details.Single(company_details => company_details.company_id == id);
+
+            result.company_name = s.companyData.company_name;
+            result.email = s.companyData.email;
+            result.address = s.companyData.address;
+            result.contact_no = s.companyData.contact_no;
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Company");
         }
     }
 }

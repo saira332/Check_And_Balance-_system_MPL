@@ -1,4 +1,4 @@
-﻿
+﻿@model MplProject.Models.signup
 @{
     Layout = null;
 }
@@ -11,13 +11,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customer</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="~/Content/MaterialIcons.css" rel="stylesheet" />
     <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">*@
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
     <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
     <script src="~/Content/jquery/jquery.min.js"></script>
     <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -558,7 +554,6 @@ $(document).ready(function(){
                     <li class="nav-item">
                         <a class="nav-link" href="~/Views/Customer/Index.cshtml">
                             <i class="menu-icon mdi mdi-backup-restore"></i>
-                            @*@Html.ActionLink("Customer", "Index", "Customer" , new { @class = "menu-title" })*@
                             <span class="menu-title">Customer</span>
                         </a>
                     </li>
