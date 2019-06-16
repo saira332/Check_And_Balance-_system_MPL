@@ -1,9 +1,11 @@
-﻿@model MplProject.Models.AttendenceDTO
+﻿@model MplProject.Models.PaymentDTO
 
 @{
     Layout = "~/Views/Shared/_DashboardPartialView.cshtml";
 }
 
+
+<!DOCTYPE html>
 <html>
 <body>
     <div class="container">
@@ -11,7 +13,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Manage <b>Attendence</b></h2>
+                        <h2>Manage <b>Payments</b></h2>
                     </div>
                     <div class="col-sm-6">
                         @*@Html.ActionLink("Add Customer","AddCustomer","Customer", new {@class= "btn btn-success" })*@
@@ -30,14 +32,14 @@
                             </span>
                         </th>
                         <th>Id</th>
-                        <th>Date</th>
-                        <th>Attendence</th>
-                        <th>Emp_id</th>
-                        <th>Image</th>
+                        <th>Total_Price</th>
+                        <th>Discount</th>
+                        <th>Source</th>
+                        <th>Paid_price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var a in Model.attendenceList)
+                    @foreach (var a in Model.paymentList)
                     {
                         <tr>
                             <td>
@@ -46,14 +48,15 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td>@a.Attn_id</td>
-                            <td>@a.date</td>
-                            <td>@a.aattendence</td>
-                            <td>@a.emp_id</td>
+                            <td>@a.pay_id</td>
+                            <td>@a.total_price</td>
+                            <td>@a.discount</td>
+                            <td>@a.source</td>
+                            <td>@a.paid_price</td>
                             @*<td><img src="~/images/@a.path" /></td>*@
                             <td>
-                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.Attn_id','date':'@a.date', 'attendence' : '@a.aattendence' , 'emp_id' : '@a.emp_id',  'image' : '@a.path'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.Attn_id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.pay_id','total_price':'@a.total_price', 'discount' : '@a.discount' , 'source' : '@a.source',  'paid_price' : '@a.paid_price'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.pay_id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     }
@@ -78,10 +81,10 @@
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                @using (Html.BeginForm("AddAttendence", "Attendence", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("AddPayment", "Payment", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                     <div class="modal-header">
-                        <h4 class="modal-title">Take Attendence</h4>
+                        <h4 class="modal-title">Do Payments</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -90,26 +93,30 @@
                             <input type="file" name="file" />
                         </div>
                         <div class="form-group">
-                            <label>id</label>
-                            @Html.TextBoxFor(model => model.attendenceData.Attn_id, new { @class = "form-control" })
+                            <label>pay_id</label>
+                            @Html.TextBoxFor(model => model.paymentData.pay_id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Date</label>
-                            @Html.TextBoxFor(model => model.attendenceData.date, new { @class = "form-control" })
+                            <label>Total_price</label>
+                            @Html.TextBoxFor(model => model.paymentData.total_price, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Attendence</label>
-                            @Html.TextBoxFor(model => model.attendenceData.aattendence, new { @class = "form-control" })
+                            <label>Discount</label>
+                            @Html.TextBoxFor(model => model.paymentData.discount, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Empl_id</label>
-                            @Html.TextBoxFor(model => model.attendenceData.emp_id, new { @class = "form-control" })
+                            <label>Source</label>
+                            @Html.TextBoxFor(model => model.paymentData.source, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Paid_price</label>
+                            @Html.TextBoxFor(model => model.paymentData.paid_price, new { @class = "form-control" })
                         </div>
                     </div>
-                                    <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <input type="submit" class="btn btn-success" value="Add">
-                                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Add">
+                    </div>
                 }
             </div>
         </div>
@@ -119,7 +126,7 @@
     <div id="editEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                @using (Html.BeginForm("EditAttendence", "Attendence", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("EditPayment", "Payment", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                     @Html.HttpMethodOverride(HttpVerbs.Put)
                     <div class="modal-header">
@@ -134,27 +141,31 @@
                         </div>
                         <input name="id" id="id_ed" class="form-control" />
                         <div class="form-group">
-                            <label>id</label>
-                            @Html.TextBoxFor(model => model.attendenceData.Attn_id, new { @class = "form-control" })
+                            <label>pay_id</label>
+                            @Html.TextBoxFor(model => model.paymentData.pay_id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Date</label>
-                            @Html.TextBoxFor(model => model.attendenceData.date, new { @class = "form-control" })
+                            <label>Total_price</label>
+                            @Html.TextBoxFor(model => model.paymentData.total_price, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Attendence</label>
-                            @Html.TextBoxFor(model => model.attendenceData.aattendence, new { @class = "form-control" })
+                            <label>Discount</label>
+                            @Html.TextBoxFor(model => model.paymentData.discount, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Empl_id</label>
-                            @Html.TextBoxFor(model => model.attendenceData.emp_id, new { @class = "form-control" })
+                            <label>Source</label>
+                            @Html.TextBoxFor(model => model.paymentData.source, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Paid_price</label>
+                            @Html.TextBoxFor(model => model.paymentData.paid_price, new { @class = "form-control" })
                         </div>
                         <img id="cimage" />
                     </div>
-                                        <div class="modal-footer">
-                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                            <input type="submit" class="btn btn-info" value="Save">
-                                        </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-info" value="Save">
+                    </div>
                 }
             </div>
         </div>
@@ -163,7 +174,7 @@
     <div id="deleteEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                @using (Html.BeginForm("DeleteAttendence", "Products", FormMethod.Post))
+                @using (Html.BeginForm("DeletePayment", "Payment", FormMethod.Post))
             {
                     @Html.HttpMethodOverride(HttpVerbs.Delete)
                     <div class="modal-header">
@@ -175,7 +186,7 @@
                         <p class="text-warning"><small>This action cannot be undone.</small></p>
                     </div>
 
-                                    <input name="id" id="id_del" class="form-control" />
+                    <input name="id" id="id_del" class="form-control" />
                                     <div class="modal-footer">
                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                         <input type="submit" class="btn btn-danger" value="Delete">
@@ -198,17 +209,19 @@
             function edit(data)
             {
 
-                document.getElementById("id_ed").value = data.id;
-                document.getElementById("date_ed").value = data.date;
-                document.getElementById("attendence_ed").value = data.attendence;
-                document.getElementById("emp_id_ed").value = data.Emp_id;
+                document.getElementById("pay_id_ed").value = data.id;
+                document.getElementById("Total_price_ed").value = data.total_price;
+                document.getElementById("Discount_ed").value = data.discount;
+                document.getElementById("Source_ed").value = data.source;
+                document.getElementById("Paid_price_ed").value = data.paid_price;
 
-                img = "~/images/" + data.image;
-                document.getElementById("cimage").src = img;
+                //img = "~/images/" + data.image;
+                //document.getElementById("cimage").src = img;
 
 
             }
     </script>
 </body>
 </html>
+
 
