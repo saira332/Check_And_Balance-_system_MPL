@@ -2163,16 +2163,19 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttendenceController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\emplyeeController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\paymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\signupController.cs" />
-    <Compile Include="Controllers\ViewProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2180,6 +2183,7 @@
     <Compile Include="Models\attendence.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AttendenceDTO.cs" />
     <Compile Include="Models\bill.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2201,9 +2205,11 @@
     <Compile Include="Models\employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\employeeDTO.cs" />
     <Compile Include="Models\manager.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ManagerDTO.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2225,6 +2231,7 @@
     <Compile Include="Models\payment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PaymentDTO.cs" />
     <Compile Include="Models\product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2248,7 +2255,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\login\Index.cshtml" />
+    <Content Include="Views\Products\login\Index.cshtml" />
     <Content Include="Views\signup\Index.cshtml" />
     <Content Include="Views\Home\Profile\DeleteProfile.cshtml" />
     <Content Include="Views\signup\usersignup.cshtml" />
@@ -2270,6 +2277,9 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\ViewProducts\Index.cshtml" />
     <Content Include="Views\Dashboard\OnlineUsers.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Attendence\Index.cshtml" />
+    <Content Include="Views\payment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2280,6 +2290,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\" />
+    <Folder Include="Views\emplyee\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

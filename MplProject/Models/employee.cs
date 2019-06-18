@@ -14,6 +14,9 @@ namespace MplProject.Models
     
     public partial class employee
     {
+        internal int E_id;
+        internal string M_name;
+
         public int id { get; set; }
         public string name { get; set; }
         public int salary { get; set; }
