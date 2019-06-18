@@ -185,8 +185,21 @@
                         </div>
                     </div>
 
+@*<button onclick="countRows()">Count Rows</button>
+@using (Html.BeginForm("Count", "Customer", FormMethod.Post))
+{
+    <input type="text" id="cou" name="cou"/>
+    <input type="submit" value="click"/>
+}*@
+
 
 <script>
+    
+    //function countRows(){
+    //    var c = $('table tr').length;
+    //    var count = c - 1;
+    //    document.getElementById("cou").value = count;
+    //}
             function del(a)
             {
                 document.getElementById("id_del").value = a;

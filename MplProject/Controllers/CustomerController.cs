@@ -54,5 +54,6 @@ namespace MplProject.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index", "Customer");
         }
+       
     }
 }
