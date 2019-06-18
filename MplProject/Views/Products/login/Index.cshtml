@@ -1,7 +1,8 @@
 ﻿@model MplProject.Models.signup
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
+   
 }
 
 <section class="post-wrapper-top">
@@ -59,6 +60,24 @@
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             <input type="password" class="form-control" name="password" placeholder="Password">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <select name="status"  class="form-control">
+                                <option>
+                                    Select Status
+                                </option>
+                                <option>
+                                    Admin
+                                </option>
+                                <option>
+                                    Employee
+                                </option>
+                                <option>
+                                    Customer
+                                </option>
+                            </select>
+                         </div >
                     </div>
                    @Html.ActionLink("Forgot Password?","Index","ForgotPassword")<br />
                     <div class="form-group">

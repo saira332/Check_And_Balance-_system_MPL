@@ -42,16 +42,25 @@ namespace MplProject.Controllers
             
         }
         [HttpPost]
-        public ActionResult userLogin(string name, string password)
+        public ActionResult userLogin(string name, string password, string status)
         {
             var results = (from row in _db.signups select row);
             foreach(var i in results)
             {
                 if (name == i.username  && password == i.password)
                 {
-                    Session["username"] = name;
+                    if(status == "Admin")
+                    {
+                        Session["username"] = name;
+                        return RedirectToAction("Index", "Dashboard");
+                    }
+                    else
+                    {
+                        Session["username"] = name;
 
-                    return RedirectToAction("Index", "Profile", new { username = name });
+                        return RedirectToAction("Index", "Profile", new { username = name });
+                    }
+                   
                 }
             }
 

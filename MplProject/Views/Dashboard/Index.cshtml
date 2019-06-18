@@ -1,4 +1,4 @@
-﻿
+﻿@model MplProject.Models.DashboardItems
 @{
     Layout = "~/Views/Shared/_DashboardPartialView.cshtml";
 }
@@ -13,9 +13,11 @@
                                             <i class="mdi mdi-cube text-danger icon-lg"></i>
                                         </div>
                                         <div class="float-right">
-                                            <p class="mb-0 text-right">Total Revenue</p>
+                                            <p class="mb-0 text-right">Products</p>
                                             <div class="fluid-container">
-                                                <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                                               
+                                                <h3 class="font-weight-medium text-right mb-0">@Model.productList.Count()</h3>
+
                                             </div>
                                         </div>
                                     </div>
@@ -50,17 +52,17 @@
                                 <div class="card-body">
                                     <div class="clearfix">
                                         <div class="float-left">
-                                            <i class="mdi mdi-poll-box text-success icon-lg"></i>
+                                            <i class="mdi mdi-account-location text-info icon-lg"></i>
                                         </div>
                                         <div class="float-right">
-                                            <p class="mb-0 text-right">Sales</p>
+                                            <p class="mb-0 text-right">Employees</p>
                                             <div class="fluid-container">
-                                                <h3 class="font-weight-medium text-right mb-0">5693</h3>
+                                                <h3 class="font-weight-medium text-right mb-0">246</h3>
                                             </div>
                                         </div>
                                     </div>
                                     <p class="text-muted mt-3 mb-0">
-                                        <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
+                                        <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
                                     </p>
                                 </div>
                             </div>
@@ -73,9 +75,9 @@
                                             <i class="mdi mdi-account-location text-info icon-lg"></i>
                                         </div>
                                         <div class="float-right">
-                                            <p class="mb-0 text-right">Employees</p>
+                                            <p class="mb-0 text-right">Customers</p>
                                             <div class="fluid-container">
-                                                <h3 class="font-weight-medium text-right mb-0">246</h3>
+                                                <h3 class="font-weight-medium text-right mb-0">@Model.customerList.Count()</h3>
                                             </div>
                                         </div>
                                     </div>

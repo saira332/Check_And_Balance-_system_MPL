@@ -14,7 +14,6 @@
                     <h2>Manage <b>Product</b></h2>
                 </div>
                 <div class="col-sm-6">
-                    @*@Html.ActionLink("Add Customer","AddCustomer","Customer", new {@class= "btn btn-success" })*@
                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
                     <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
                 </div>
@@ -197,11 +196,22 @@
     </div>
 </div>
 
+@*<button onclick="countRows()">Count Rows</button>
+@using (Html.BeginForm("Count", "Products", FormMethod.Post))
+{
+    <input type="text" id="cou" name="cou" />
+    <input type="submit" value="click" />
+}*@
 
 
 
 
 <script>
+    //function countRows(){
+    //    var c = $('table tr').length;
+    //    var count = c - 1;
+    //    document.getElementById("cou").value = count;
+    //}
             function del(a)
             {
                 document.getElementById("id_del").value = a;
