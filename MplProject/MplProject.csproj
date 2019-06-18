@@ -2134,6 +2134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendenceController.cs" />
+    <Compile Include="Controllers\Bookin_EngineController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -2156,6 +2157,7 @@
     <Compile Include="Models\bill.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingEngineDTO.cs" />
     <Compile Include="Models\booking_engine.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2245,6 +2247,7 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Attendence\Index.cshtml" />
     <Content Include="Views\payment\Index.cshtml" />
+    <Content Include="Views\Bookin_Engine\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2255,7 +2258,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\" />
-    <Folder Include="Views\emplyee\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

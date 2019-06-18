@@ -36,7 +36,7 @@ namespace MplProject.Controllers
         [HttpDelete]
         public ActionResult DeleteManager(int id)
         {
-            var result = _db.managers.Single(manager => manager.M_id == id);
+            var result = _db.managers.Single(manager => manager.id== id);
             _db.managers.Remove(result);
             _db.SaveChanges();
             return RedirectToAction("Index", "Manager");
@@ -44,8 +44,8 @@ namespace MplProject.Controllers
         [HttpPut]
         public ActionResult EditManager(ManagerDTO s, int id, string name)
         {
-            manager result = _db.managers.Single(manager => manager.M_id == id);
-            result.M_name = name;
+            manager result = _db.managers.Single(manager => manager.id == id);
+            result.name = name;
             //result.pro_name = s.productData.pro_name;
             //result.price = s.productData.price;
             //result.quantity = s.productData.quantity;

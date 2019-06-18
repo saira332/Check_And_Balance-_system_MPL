@@ -37,7 +37,7 @@ namespace MplProject.Controllers
         [HttpDelete]
         public ActionResult DeletePayment(int id)
         {
-            var result = _db.payments.Single(payment => payment.pay_id == id);
+            var result = _db.payments.Single(payment => payment.id == id);
             _db.payments.Remove(result);
             _db.SaveChanges();
             return RedirectToAction("Index", "Payments");
@@ -47,7 +47,7 @@ namespace MplProject.Controllers
         {
             string realpath = Server.MapPath("/images") + "//" + file.FileName;
             file.SaveAs(realpath);
-            payment result = _db.payments.Single(payment => payment.pay_id == id);
+            payment result = _db.payments.Single(payment => payment.id == id);
             result.total_price = s.paymentData.total_price;
             result.discount = s.paymentData.discount;
             result.source = s.paymentData.source;
