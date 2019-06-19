@@ -14,8 +14,6 @@ namespace MplProject.Models
     
     public partial class booking_engine
     {
-        internal string path;
-
         public int booking_id { get; set; }
         public int pro_id { get; set; }
         public int cus_id { get; set; }

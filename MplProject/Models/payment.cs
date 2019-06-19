@@ -14,9 +14,6 @@ namespace MplProject.Models
     
     public partial class payment
     {
-        internal string path;
-        internal int pay_id;
-
         public int id { get; set; }
         public int total_price { get; set; }
         public int discount { get; set; }

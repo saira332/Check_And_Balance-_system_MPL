@@ -54,8 +54,8 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td>@a.M_id</td>
-                            <td>@a.M_name</td>
+                            <td>@a.id</td>
+                            <td>@a.name</td>
                             <td>@a.address</td>
                             <td>@a.contact_no</td>
                             <td>@a.salary</td>
@@ -67,10 +67,10 @@
                             <td>@a.email</td>
                             <td>@a.CNIC</td>
                             <td>@a.bonous</td>
-                            @*<td><img src="~/images/@a.path" /></td>*@
+                            <td><img src="~/images/@a.path" /></td>
                             <td>
-                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.id','name':'@a.name', 'address' : '@a.address' , 'contact_no' : '@a.contact_no', 'salary' : '@a.salary', 'DOB' : '@a.DOB', 'Gender' : '@a.gender', 'Insurance' : '@a.insurance' , 'startDate' : '@a.start_date', 'TerminatedDate' : '@a.terminated_date', 'Email' : '@a.email', 'CNIC' : '@a.CNIC', 'Bonous' : '@a.bonous'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.M_id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.id','name':'@a.name', 'address' : '@a.address' , 'contact_no' : '@a.contact_no', 'salary' : '@a.salary', 'DOB' : '@a.DOB', 'Gender' : '@a.gender', 'Insurance' : '@a.insurance' , 'startDate' : '@a.start_date', 'TerminatedDate' : '@a.terminated_date', 'Email' : '@a.email', 'CNIC' : '@a.CNIC', 'Bonous' : '@a.bonous', 'path': '@a.path'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     }
@@ -292,8 +292,8 @@
                 document.getElementById("CNIC").value = data.CNIC;
                 document.getElementById("bonous").value = data.bonous;
 
-                //img = "~/images/" + data.image;
-                //document.getElementById("cimage").src = img;
+                img = "~/images/" + data.image;
+                document.getElementById("cimage").src = img;
 
 
             }

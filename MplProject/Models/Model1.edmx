@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CheckAndBalanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CheckAndBalanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="attendence">
           <Key>
             <PropertyRef Name="id" />
@@ -31,6 +31,16 @@
           <Property Name="booking_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="pro_id" Type="int" Nullable="false" />
           <Property Name="cus_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cus_id" Type="int" Nullable="false" />
+          <Property Name="pro_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="company_details">
           <Key>
@@ -150,6 +160,15 @@
           <Property Name="status" Type="varchar(max)" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="path" Type="varchar(max)" />
+          <Property Name="createdDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_id" Type="int" Nullable="false" />
+          <Property Name="task" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_attendence_empLogin">
           <End Role="empLogin" Type="Self.empLogin" Multiplicity="1" />
@@ -211,6 +230,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_cart_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="cus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cart_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_orders_customer">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
@@ -235,10 +278,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_task_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CheckAndBalanceModelStoreContainer">
           <EntitySet Name="attendence" EntityType="Self.attendence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bills" EntityType="Self.bills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="booking_engine" EntityType="Self.booking_engine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="company_details" EntityType="Self.company_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="empLogin" EntityType="Self.empLogin" Schema="dbo" store:Type="Tables" />
@@ -248,6 +304,7 @@
           <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="signup" EntityType="Self.signup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="task" EntityType="Self.task" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_attendence_empLogin" Association="Self.FK_attendence_empLogin">
             <End Role="empLogin" EntitySet="empLogin" />
             <End Role="attendence" EntitySet="attendence" />
@@ -268,6 +325,14 @@
             <End Role="products" EntitySet="products" />
             <End Role="booking_engine" EntitySet="booking_engine" />
           </AssociationSet>
+          <AssociationSet Name="FK_cart_customer" Association="Self.FK_cart_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="cart" EntitySet="cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cart_products" Association="Self.FK_cart_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="cart" EntitySet="cart" />
+          </AssociationSet>
           <AssociationSet Name="FK_orders_customer" Association="Self.FK_orders_customer">
             <End Role="customer" EntitySet="customer" />
             <End Role="orders" EntitySet="orders" />
@@ -276,8 +341,13 @@
             <End Role="products" EntitySet="products" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_task_employee" Association="Self.FK_task_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="task" EntitySet="task" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CheckAndBalanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -313,6 +383,18 @@
           <NavigationProperty Name="customer" Relationship="Self.FK_booking_engine_customer" FromRole="booking_engine" ToRole="customer" />
           <NavigationProperty Name="product" Relationship="Self.FK_booking_engine_products" FromRole="booking_engine" ToRole="products" />
         </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cus_id" Type="Int32" Nullable="false" />
+          <Property Name="pro_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_cart_customer" FromRole="cart" ToRole="customer" />
+          <NavigationProperty Name="product" Relationship="Self.FK_cart_products" FromRole="cart" ToRole="products" />
+        </EntityType>
         <EntityType Name="company_details">
           <Key>
             <PropertyRef Name="company_id" />
@@ -333,10 +415,11 @@
           <Property Name="contact_no" Type="Int32" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="bills" Relationship="Self.FK_bills_customer" FromRole="customer" ToRole="bills" />
           <NavigationProperty Name="booking_engine" Relationship="Self.FK_booking_engine_customer" FromRole="customer" ToRole="booking_engine" />
+          <NavigationProperty Name="carts" Relationship="Self.FK_cart_customer" FromRole="customer" ToRole="cart" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_customer" FromRole="customer" ToRole="orders" />
-          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="empLogin">
           <Key>
@@ -366,6 +449,7 @@
           <Property Name="CNIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="bonous" Type="Int32" Nullable="false" />
           <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tasks" Relationship="Self.FK_task_employee" FromRole="employee" ToRole="task" />
         </EntityType>
         <EntityType Name="manager">
           <Key>
@@ -420,10 +504,11 @@
           <Property Name="quality" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="bills" Relationship="Self.FK_bills_products" FromRole="products" ToRole="bills" />
           <NavigationProperty Name="booking_engine" Relationship="Self.FK_booking_engine_products" FromRole="products" ToRole="booking_engine" />
+          <NavigationProperty Name="carts" Relationship="Self.FK_cart_products" FromRole="products" ToRole="cart" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_products" FromRole="products" ToRole="orders" />
-          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="signup">
           <Key>
@@ -440,6 +525,16 @@
           <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id" Type="Int32" Nullable="false" />
+          <Property Name="task1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="Self.FK_task_employee" FromRole="task" ToRole="employee" />
         </EntityType>
         <Association Name="FK_attendence_empLogin">
           <End Role="empLogin" Type="Self.empLogin" Multiplicity="1" />
@@ -501,6 +596,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_cart_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="cus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cart_products">
+          <End Role="products" Type="Self.product" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_orders_customer">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="orders" Type="Self.order" Multiplicity="*" />
@@ -510,6 +629,18 @@
             </Principal>
             <Dependent Role="orders">
               <PropertyRef Name="cus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_task_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="emp_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -529,6 +660,7 @@
           <EntitySet Name="attendences" EntityType="Self.attendence" />
           <EntitySet Name="bills" EntityType="Self.bill" />
           <EntitySet Name="booking_engine" EntityType="Self.booking_engine" />
+          <EntitySet Name="carts" EntityType="Self.cart" />
           <EntitySet Name="company_details" EntityType="Self.company_details" />
           <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="empLogins" EntityType="Self.empLogin" />
@@ -538,6 +670,7 @@
           <EntitySet Name="payments" EntityType="Self.payment" />
           <EntitySet Name="products" EntityType="Self.product" />
           <EntitySet Name="signups" EntityType="Self.signup" />
+          <EntitySet Name="tasks" EntityType="Self.task" />
           <AssociationSet Name="FK_attendence_empLogin" Association="Self.FK_attendence_empLogin">
             <End Role="empLogin" EntitySet="empLogins" />
             <End Role="attendence" EntitySet="attendences" />
@@ -558,9 +691,21 @@
             <End Role="products" EntitySet="products" />
             <End Role="booking_engine" EntitySet="booking_engine" />
           </AssociationSet>
+          <AssociationSet Name="FK_cart_customer" Association="Self.FK_cart_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cart_products" Association="Self.FK_cart_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
           <AssociationSet Name="FK_orders_customer" Association="Self.FK_orders_customer">
             <End Role="customer" EntitySet="customers" />
             <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_task_employee" Association="Self.FK_task_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="task" EntitySet="tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_orders_products" Association="Self.FK_orders_products">
             <End Role="products" EntitySet="products" />
@@ -603,6 +748,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="CheckAndBalanceModel.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="company_details">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.company_details">
               <MappingFragment StoreEntitySet="company_details">
@@ -617,13 +773,13 @@
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.customer">
               <MappingFragment StoreEntitySet="customer">
-                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="contact_no" ColumnName="contact_no" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="path" ColumnName="path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -639,7 +795,6 @@
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.employee">
               <MappingFragment StoreEntitySet="employee">
-                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="salary" ColumnName="salary" />
@@ -654,6 +809,7 @@
                 <ScalarProperty Name="terminated_date" ColumnName="terminated_date" />
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="bonous" ColumnName="bonous" />
+                <ScalarProperty Name="path" ColumnName="path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -704,20 +860,19 @@
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.product">
               <MappingFragment StoreEntitySet="products">
-                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="pro_id" ColumnName="pro_id" />
                 <ScalarProperty Name="pro_name" ColumnName="pro_name" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="quality" ColumnName="quality" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="path" ColumnName="path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="signups">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.signup">
               <MappingFragment StoreEntitySet="signup">
-                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -728,6 +883,17 @@
                 <ScalarProperty Name="SecAnswer" ColumnName="SecAnswer" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tasks">
+            <EntityTypeMapping TypeName="CheckAndBalanceModel.task">
+              <MappingFragment StoreEntitySet="task">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="task1" ColumnName="task" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

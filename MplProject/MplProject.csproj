@@ -2192,6 +2192,9 @@
     <Compile Include="Models\booking_engine.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\cart.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CompanyDTO.cs" />
     <Compile Include="Models\company_details.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -2239,6 +2242,9 @@
     </Compile>
     <Compile Include="Models\ProductsDTO.cs" />
     <Compile Include="Models\signup.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\task.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
