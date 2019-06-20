@@ -14,6 +14,14 @@ namespace MplProject.Controllers
         {
             _db = new CheckAndBalanceEntities();
         }
+        public ActionResult Index()
+        {
+            var empData = new employeeDTO()
+            {
+                employeeList = _db.employees.ToList()
+            };
+            return View(empData);
+        }
         [HttpPost]
         public ActionResult Addemplyee(HttpPostedFileBase file, employeeDTO c)
         {
