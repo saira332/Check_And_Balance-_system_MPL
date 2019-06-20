@@ -54,8 +54,8 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td>@a.M_id</td>
-                            <td>@a.M_name</td>
+                            <td>@a.id</td>
+                            <td>@a.name</td>
                             <td>@a.address</td>
                             <td>@a.contact_no</td>
                             <td>@a.salary</td>
@@ -67,10 +67,10 @@
                             <td>@a.email</td>
                             <td>@a.CNIC</td>
                             <td>@a.bonous</td>
-                            @*<td><img src="~/images/@a.path" /></td>*@
+                            <td><img src="~/images/@a.path" /></td>
                             <td>
-                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.M_id','name':'@a.M_name', 'address' : '@a.address' , 'contact_no' : '@a.contact_no', 'salary' : '@a.salary', 'DOB' : '@a.DOB', 'Gender' : '@a.gender', 'Insurance' : '@a.insurance' , 'startDate' : '@a.start_date', 'TerminatedDate' : '@a.terminated_date', 'Email' : '@a.email', 'CNIC' : '@a.CNIC', 'Bonous' : '@a.bonous'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.M_id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.id','name':'@a.name', 'address' : '@a.address' , 'contact_no' : '@a.contact_no', 'salary' : '@a.salary', 'DOB' : '@a.DOB', 'Gender' : '@a.gender', 'Insurance' : '@a.insurance' , 'startDate' : '@a.start_date', 'TerminatedDate' : '@a.terminated_date', 'Email' : '@a.email', 'CNIC' : '@a.CNIC', 'Bonous' : '@a.bonous', 'path': '@a.path'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     }
@@ -108,7 +108,7 @@
                         </div>
                         <div class="form-group">
                             <label>Name</label>
-                            @Html.TextBoxFor(model => model.managerData.M_name, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.managerData.name, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Address</label>
@@ -184,7 +184,7 @@
                         <input name="id" id="id_ed" class="form-control" />
                         <div class="form-group">
                             <label>Name</label>
-                            @Html.TextBoxFor(model => model.managerData.M_name, new { @class = "form-control", id = "name_ed" })
+                            @Html.TextBoxFor(model => model.managerData.name, new { @class = "form-control", id = "name_ed" })
                         </div>
                         <div class="form-group">
                             <label>Address</label>
@@ -279,8 +279,8 @@
             function edit(data)
             {
 
-                document.getElementById("M_id").value = data.M_id;
-                document.getElementById("M_name").value = data.M_name;
+                document.getElementById("id").value = data.id;
+                document.getElementById("name").value = data.name;
                 document.getElementById("address").value = data.address;
                 document.getElementById("contact_no").value = data.contact_no;
                 document.getElementById("salary").value = data.salary;
@@ -292,8 +292,8 @@
                 document.getElementById("CNIC").value = data.CNIC;
                 document.getElementById("bonous").value = data.bonous;
 
-                //img = "~/images/" + data.image;
-                //document.getElementById("cimage").src = img;
+                img = "~/images/" + data.image;
+                document.getElementById("cimage").src = img;
 
 
             }

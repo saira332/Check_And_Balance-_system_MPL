@@ -1,11 +1,12 @@
-﻿@model MplProject.Models.PaymentDTO
+﻿@model MplProject.Models.BookingEngineDTO
 
 @{
     Layout = "~/Views/Shared/_DashboardPartialView.cshtml";
 }
-
+}
 
 <!DOCTYPE html>
+
 <html>
 <body>
     <div class="container">
@@ -13,7 +14,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Manage <b>Payments</b></h2>
+                        <h2>Manage <b>Booking_Engine</b></h2>
                     </div>
                     <div class="col-sm-6">
                         @*@Html.ActionLink("Add Customer","AddCustomer","Customer", new {@class= "btn btn-success" })*@
@@ -31,15 +32,15 @@
                                 <label for="selectAll"></label>
                             </span>
                         </th>
-                        <th>Id</th>
-                        <th>Total_Price</th>
-                        <th>Discount</th>
-                        <th>Source</th>
-                        <th>Paid_price</th>
+                        <th>Booking_id</th>
+                        <th>Cus_id</th>
+                        <th>Pro_id</th>
+                        @*<th>Source</th>
+                        <th>Paid_price</th>*@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var a in Model.paymentList)
+                    @foreach (var a in Model.booking_engineList)
                     {
                         <tr>
                             <td>
@@ -48,15 +49,15 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td>@a.id</td>
-                            <td>@a.total_price</td>
-                            <td>@a.discount</td>
-                            <td>@a.source</td>
-                            <td>@a.paid_price</td>
+                            <td>@a.booking_id</td>
+                            <td>@a.cus_id</td>
+                            <td>@a.pro_id</td>
+                            @*<td>@a.source</td>
+                            <td>@a.paid_price</td>*@
                             @*<td><img src="~/images/@a.path" /></td>*@
                             <td>
-                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.id','total_price':'@a.total_price', 'discount' : '@a.discount' , 'source' : '@a.source',  'paid_price' : '@a.paid_price'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.booking_id','cus_id':'@a.cus_id', 'pro_id' : '@a.pro_id'})"ce data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.booking_id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     }
@@ -81,10 +82,10 @@
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                @using (Html.BeginForm("AddPayment", "Payment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("AddBooking_Engine", "Booking_Engine", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                     <div class="modal-header">
-                        <h4 class="modal-title">Do Payments</h4>
+                        <h4 class="modal-title">Booking_engine</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -93,25 +94,25 @@
                             <input type="file" name="file" />
                         </div>
                         <div class="form-group">
-                            <label>pay_id</label>
-                            @Html.TextBoxFor(model => model.paymentData.id, new { @class = "form-control" })
+                            <label>booking_id</label>
+                            @Html.TextBoxFor(model => model.booking_engineData.booking_id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Total_price</label>
-                            @Html.TextBoxFor(model => model.paymentData.total_price, new { @class = "form-control" })
+                            <label>cus_id</label>
+                            @Html.TextBoxFor(model => model.booking_engineData.cus_id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Discount</label>
-                            @Html.TextBoxFor(model => model.paymentData.discount, new { @class = "form-control" })
+                            <label>pro_id</label>
+                            @Html.TextBoxFor(model => model.booking_engineData.pro_id, new { @class = "form-control" })
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label>Source</label>
                             @Html.TextBoxFor(model => model.paymentData.source, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Paid_price</label>
                             @Html.TextBoxFor(model => model.paymentData.paid_price, new { @class = "form-control" })
-                        </div>
+                        </div>*@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -126,7 +127,7 @@
     <div id="editEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                @using (Html.BeginForm("EditPayment", "Payment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("EditBooking_Engine", "Booking_Engine", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                     @Html.HttpMethodOverride(HttpVerbs.Put)
                     <div class="modal-header">
@@ -141,25 +142,25 @@
                         </div>
                         <input name="id" id="id_ed" class="form-control" />
                         <div class="form-group">
-                            <label>pay_id</label>
-                            @Html.TextBoxFor(model => model.paymentData.id, new { @class = "form-control" })
+                            <label>Booking_Engine</label>
+                            @Html.TextBoxFor(model => model.booking_engineData.booking_id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Total_price</label>
-                            @Html.TextBoxFor(model => model.paymentData.total_price, new { @class = "form-control" })
+                            <label>cus_id</label>
+                            @Html.TextBoxFor(model => model.booking_engineData.cus_id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Discount</label>
-                            @Html.TextBoxFor(model => model.paymentData.discount, new { @class = "form-control" })
+                            <label>pro_id</label>
+                            @Html.TextBoxFor(model => model.booking_engineData.pro_id, new { @class = "form-control" })
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label>Source</label>
                             @Html.TextBoxFor(model => model.paymentData.source, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Paid_price</label>
                             @Html.TextBoxFor(model => model.paymentData.paid_price, new { @class = "form-control" })
-                        </div>
+                        </div>*@
                         <img id="cimage" />
                     </div>
                     <div class="modal-footer">
@@ -174,23 +175,23 @@
     <div id="deleteEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                @using (Html.BeginForm("DeletePayment", "Payment", FormMethod.Post))
+                @using (Html.BeginForm("DeleteBooking_Engine", "Booking_Engine", FormMethod.Post))
             {
                     @Html.HttpMethodOverride(HttpVerbs.Delete)
                     <div class="modal-header">
-                        <h4 class="modal-title">Delete Attendence</h4>
+                        <h4 class="modal-title">Delete Bookings</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete these Records?</p>
+                        <p>Are you sure you want to delete these Bookings?</p>
                         <p class="text-warning"><small>This action cannot be undone.</small></p>
                     </div>
 
                     <input name="id" id="id_del" class="form-control" />
-                                    <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <input type="submit" class="btn btn-danger" value="Delete">
-                                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </div>
                 }
             </div>
         </div>
@@ -209,14 +210,14 @@
             function edit(data)
             {
 
-                document.getElementById("pay_id_ed").value = data.id;
-                document.getElementById("Total_price_ed").value = data.total_price;
-                document.getElementById("Discount_ed").value = data.discount;
-                document.getElementById("Source_ed").value = data.source;
-                document.getElementById("Paid_price_ed").value = data.paid_price;
+                document.getElementById("booking_id_ed").value = data.booking_id;
+                document.getElementById("cus_id_ed").value = data.cus_id;
+                document.getElementById("pro_id_ed").value = data.pro_id;
+                //document.getElementById("Source_ed").value = data.source;
+                //document.getElementById("Paid_price_ed").value = data.paid_price;
 
-                //img = "~/images/" + data.image;
-                //document.getElementById("cimage").src = img;
+                img = "~/images/" + data.image;
+                document.getElementById("cimage").src = img;
 
 
             }

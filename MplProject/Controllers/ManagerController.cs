@@ -27,8 +27,10 @@ namespace MplProject.Controllers
             return View(ManData);
         }
         [HttpPost]
-        public ActionResult AddManager(ManagerDTO c)
+        public ActionResult AddManager(HttpPostedFileBase file, ManagerDTO c)
         {
+            string realpath = Server.MapPath("/images") + "//" + file.FileName;
+            file.SaveAs(realpath);
             _db.managers.Add(c.managerData);
             _db.SaveChanges();
             return RedirectToAction("Index", "Manager");
@@ -36,21 +38,28 @@ namespace MplProject.Controllers
         [HttpDelete]
         public ActionResult DeleteManager(int id)
         {
-            var result = _db.managers.Single(manager => manager.id == id);
+            var result = _db.managers.Single(manager => manager.id== id);
             _db.managers.Remove(result);
             _db.SaveChanges();
             return RedirectToAction("Index", "Manager");
         }
         [HttpPut]
-        public ActionResult EditManager(ManagerDTO s, int id, string name)
+        public ActionResult EditManager(HttpPostedFileBase file, ManagerDTO s, int id, string name)
         {
+            string realpath = Server.MapPath("/images") + "//" + file.FileName;
+            file.SaveAs(realpath);
             manager result = _db.managers.Single(manager => manager.id == id);
             result.name = name;
-            //result.pro_name = s.productData.pro_name;
-            //result.price = s.productData.price;
-            //result.quantity = s.productData.quantity;
-            //result.quality = s.productData.quality;
-            //result.description = s.productData.description;
+            result.email = s.managerData.email;
+            result.gender = s.managerData.gender;
+            result.address = s.managerData.address;
+            result.contact_no = s.managerData.contact_no;
+            result.insurance = s.managerData.insurance;
+            result.salary = s.managerData.salary;
+            result.start_date = s.managerData.start_date;
+            result.terminated_date = s.managerData.terminated_date;
+            result.CNIC = s.managerData.CNIC;
+            result.bonous = s.managerData.bonous;
             _db.SaveChanges();
             return RedirectToAction("Index", "Manager");
         }

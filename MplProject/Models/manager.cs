@@ -19,13 +19,13 @@ namespace MplProject.Models
         public string address { get; set; }
         public int contact_no { get; set; }
         public int salary { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public System.DateTime DOB { get; set; }
         public string gender { get; set; }
         public string insurance { get; set; }
         public System.DateTime start_date { get; set; }
         public System.DateTime terminated_date { get; set; }
         public string email { get; set; }
         public string CNIC { get; set; }
-        public Nullable<int> bonous { get; set; }
+        public int bonous { get; set; }
     }
 }
