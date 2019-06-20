@@ -14,6 +14,14 @@ namespace MplProject.Controllers
         {
             _db = new CheckAndBalanceEntities();
         }
+        public ActionResult Index()
+        {
+            var empData = new employeeDTO()
+            {
+                employeeList = _db.employees.ToList()
+            };
+            return View(empData);
+        }
         [HttpPost]
         public ActionResult Addemplyee(HttpPostedFileBase file, employeeDTO c)
         {
@@ -27,7 +35,7 @@ namespace MplProject.Controllers
         [HttpDelete]
         public ActionResult Deleteemplyee(int id)
         {
-            var result = _db.employees.Single(employee => employee.E_id == id);
+            var result = _db.employees.Single(employee => employee.id == id);
             _db.employees.Remove(result);
             _db.SaveChanges();
             return RedirectToAction("Index", "emplyee");
