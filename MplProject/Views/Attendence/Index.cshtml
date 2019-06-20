@@ -46,14 +46,14 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td>@a.Attn_id</td>
+                            <td>@a.id</td>
                             <td>@a.date</td>
                             <td>@a.aattendence</td>
                             <td>@a.emp_id</td>
                             @*<td><img src="~/images/@a.path" /></td>*@
                             <td>
-                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.Attn_id','date':'@a.date', 'attendence' : '@a.aattendence' , 'emp_id' : '@a.emp_id',  'image' : '@a.path'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.Attn_id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.id','date':'@a.date', 'attendence' : '@a.aattendence' , 'emp_id' : '@a.emp_id'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     }
@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-group">
                             <label>id</label>
-                            @Html.TextBoxFor(model => model.attendenceData.Attn_id, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.attendenceData.id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Date</label>
@@ -135,7 +135,7 @@
                         <input name="id" id="id_ed" class="form-control" />
                         <div class="form-group">
                             <label>id</label>
-                            @Html.TextBoxFor(model => model.attendenceData.Attn_id, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.attendenceData.id, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Date</label>

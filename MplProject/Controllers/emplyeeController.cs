@@ -27,7 +27,7 @@ namespace MplProject.Controllers
         [HttpDelete]
         public ActionResult Deleteemplyee(int id)
         {
-            var result = _db.employees.Single(employee => employee.E_id == id);
+            var result = _db.employees.Single(employee => employee.id == id);
             _db.employees.Remove(result);
             _db.SaveChanges();
             return RedirectToAction("Index", "emplyee");

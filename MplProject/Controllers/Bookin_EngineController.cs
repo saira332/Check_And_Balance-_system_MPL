@@ -26,11 +26,8 @@ namespace MplProject.Controllers
      
         }
         [HttpPost]
-        public ActionResult AddBooking_Engine(HttpPostedFileBase file, BookingEngineDTO c)
+        public ActionResult AddBooking_Engine( BookingEngineDTO c)
         {
-            string realpath = Server.MapPath("/images") + "//" + file.FileName;
-            file.SaveAs(realpath);
-            c.booking_engineData.path = file.FileName;
             _db.booking_engine.Add(c.booking_engineData);
             _db.SaveChanges();
             return RedirectToAction("Index", "Bookin_Engine");
@@ -53,7 +50,7 @@ namespace MplProject.Controllers
             result.cus_id = s.booking_engineData.cus_id;
             result.pro_id = s.booking_engineData.pro_id;
            // result.paid_price = s.paymentData.paid_price;
-            result.path = file.FileName;
+       
             _db.SaveChanges();
             return RedirectToAction("Index", "Bookin_Engine");
         }

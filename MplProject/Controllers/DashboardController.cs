@@ -48,5 +48,13 @@ namespace MplProject.Controllers
 
             return RedirectToAction("Tasks", "Dashboard");
         }
+        public ActionResult VisitorsLog()
+        {
+            var user = new userDTO()
+            {
+                userList = _db.signups.ToList()
+            };
+            return View(user);
+        }
     }
 }
