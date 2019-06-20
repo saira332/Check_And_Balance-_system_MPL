@@ -1,0 +1,15 @@
+﻿@model MplProject.Models.task
+
+@{
+    ViewBag.Title = "Tasks";
+    Layout = "~/Views/Shared/_DashboardPartialView.cshtml";
+}
+
+@using (Html.BeginForm("Tasks", "Dashboard", FormMethod.Post))
+{
+    @Html.DropDownList("employe", new SelectList(ViewBag.employees, "id", "name"));
+    @Html.TextBoxFor(model => model.status);
+    @Html.TextBoxFor(model => model.task1);
+    <input type="submit" />
+}
+

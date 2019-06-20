@@ -15,9 +15,6 @@ namespace MplProject.Models
     
     public partial class CheckAndBalanceEntities : DbContext
     {
-        internal object employeees;
-        internal object emplyees;
-
         public CheckAndBalanceEntities()
             : base("name=CheckAndBalanceEntities")
         {
@@ -40,5 +37,7 @@ namespace MplProject.Models
         public virtual DbSet<payment> payments { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<signup> signups { get; set; }
+        public virtual DbSet<cart> carts { get; set; }
+        public virtual DbSet<task> tasks { get; set; }
     }
 }

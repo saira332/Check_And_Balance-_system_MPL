@@ -20,6 +20,7 @@ namespace MplProject.Models
             this.bills = new HashSet<bill>();
             this.booking_engine = new HashSet<booking_engine>();
             this.orders = new HashSet<order>();
+            this.carts = new HashSet<cart>();
         }
     
         public int pro_id { get; set; }
@@ -36,5 +37,7 @@ namespace MplProject.Models
         public virtual ICollection<booking_engine> booking_engine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cart> carts { get; set; }
     }
 }

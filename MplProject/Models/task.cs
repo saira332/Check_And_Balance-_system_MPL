@@ -12,19 +12,13 @@ namespace MplProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class signup
+    public partial class task
     {
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string email { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public int phoneNo { get; set; }
-        public string SecQuestion { get; set; }
-        public string SecAnswer { get; set; }
-        public string status { get; set; }
         public int id { get; set; }
-        public string path { get; set; }
-        public Nullable<System.DateTime> createdDate { get; set; }
+        public int emp_id { get; set; }
+        public string task1 { get; set; }
+        public string status { get; set; }
+    
+        public virtual employee employee { get; set; }
     }
 }

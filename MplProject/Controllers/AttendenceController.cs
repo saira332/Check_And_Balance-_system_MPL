@@ -25,11 +25,9 @@ namespace MplProject.Controllers
             return View(AttnData);
         }
         [HttpPost]
-        public ActionResult AddAttendence(HttpPostedFileBase file, AttendenceDTO c)
+        public ActionResult AddAttendence( AttendenceDTO c)
         {
-            string realpath = Server.MapPath("/images") + "//" + file.FileName;
-            file.SaveAs(realpath);
-            c.attendenceData.path = file.FileName;
+            
             _db.attendences.Add(c.attendenceData);
             _db.SaveChanges();
             return RedirectToAction("Index", "Attendence");
@@ -37,22 +35,20 @@ namespace MplProject.Controllers
         [HttpDelete]
         public ActionResult DeleteAttendence(int id)
         {
-            var result = _db.attendences.Single(attendence => attendence.Attn_id == id);
+            var result = _db.attendences.Single(attendence => attendence.id == id);
             _db.attendences.Remove(result);
             _db.SaveChanges();
             return RedirectToAction("Index", "Attendence");
         }
         [HttpPut]
-        public ActionResult EditAttendence(HttpPostedFileBase file, AttendenceDTO s, int id)
+        public ActionResult EditAttendence( AttendenceDTO s, int id)
         {
-            string realpath = Server.MapPath("/images") + "//" + file.FileName;
-            file.SaveAs(realpath);
-            attendence result = _db.attendences.Single(attendence => attendence.Attn_id == id);
-            result.Attn_id= s.attendenceData.Attn_id;
+            
+            attendence result = _db.attendences.Single(attendence => attendence.id == id);
+            result.id= s.attendenceData.id;
             result.date = s.attendenceData.date;
-            result.atendence = s.attendenceData.atendence;
+            result.aattendence= s.attendenceData.aattendence;
             result.emp_id = s.attendenceData.emp_id;
-            result.path = file.FileName;
             _db.SaveChanges();
             return RedirectToAction("Index", "Attendence");
         }
