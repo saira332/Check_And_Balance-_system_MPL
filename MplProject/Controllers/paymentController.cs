@@ -21,10 +21,11 @@ namespace MplProject.Controllers
             {
                 paymentList = _db.payments.ToList()
             };
+            //var results = (from row in _db.customers select row).ToList();
             return View(PayData);
         }
         [HttpPost]
-        public ActionResult AddPayment(PaymentDTO c)
+        public ActionResult AddPayment( PaymentDTO c)
         {
             _db.payments.Add(c.paymentData);
             _db.SaveChanges();
@@ -39,8 +40,10 @@ namespace MplProject.Controllers
             return RedirectToAction("Index", "Payments");
         }
         [HttpPut]
-        public ActionResult EditPayment(PaymentDTO s, int id)
+        public ActionResult EditPayment(HttpPostedFileBase file, PaymentDTO s, int id)
         {
+            string realpath = Server.MapPath("/images") + "//" + file.FileName;
+            file.SaveAs(realpath);
             payment result = _db.payments.Single(payment => payment.id == id);
             result.total_price = s.paymentData.total_price;
             result.discount = s.paymentData.discount;

@@ -28,7 +28,6 @@ namespace MplProject.Models
         public virtual DbSet<attendence> attendences { get; set; }
         public virtual DbSet<bill> bills { get; set; }
         public virtual DbSet<booking_engine> booking_engine { get; set; }
-        public virtual DbSet<cart> carts { get; set; }
         public virtual DbSet<company_details> company_details { get; set; }
         public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<empLogin> empLogins { get; set; }
@@ -38,6 +37,7 @@ namespace MplProject.Models
         public virtual DbSet<payment> payments { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<signup> signups { get; set; }
+        public virtual DbSet<cart> carts { get; set; }
         public virtual DbSet<task> tasks { get; set; }
     }
 }

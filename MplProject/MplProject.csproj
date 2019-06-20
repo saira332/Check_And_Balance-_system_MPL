@@ -2286,10 +2286,8 @@
     <Content Include="Views\ViewProducts\Index.cshtml" />
     <Content Include="Views\Dashboard\OnlineUsers.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
-    <Content Include="Views\Account\Attendence\Index.cshtml" />
+    <Content Include="Views\Attendence\Index.cshtml" />
     <Content Include="Views\payment\Index.cshtml" />
-    <Content Include="Views\Bookin_Engine\Index.cshtml" />
-    <Content Include="Views\emplyee\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

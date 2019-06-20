@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CheckAndBalanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CheckAndBalanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="attendence">
           <Key>
             <PropertyRef Name="id" />
@@ -63,6 +63,7 @@
           <Property Name="address" Type="varchar(max)" Nullable="false" />
           <Property Name="email" Type="varchar(max)" Nullable="false" />
           <Property Name="path" Type="varchar(max)" />
+          <Property Name="username" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="empLogin">
           <Key>
@@ -84,12 +85,12 @@
           <Property Name="email" Type="varchar(max)" Nullable="false" />
           <Property Name="address" Type="varchar(max)" Nullable="false" />
           <Property Name="task" Type="varchar(max)" Nullable="false" />
-          <Property Name="insurance" Type="varchar(max)" Nullable="false" />
-          <Property Name="overtime" Type="int" Nullable="false" />
+          <Property Name="insurance" Type="varchar(max)" />
+          <Property Name="overtime" Type="int" />
           <Property Name="start_date" Type="datetime" Nullable="false" />
           <Property Name="terminated_date" Type="datetime" Nullable="false" />
           <Property Name="CNIC" Type="varchar(max)" Nullable="false" />
-          <Property Name="bonous" Type="int" Nullable="false" />
+          <Property Name="bonous" Type="int" />
           <Property Name="path" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="manager">
@@ -101,14 +102,14 @@
           <Property Name="address" Type="varchar(max)" Nullable="false" />
           <Property Name="contact_no" Type="int" Nullable="false" />
           <Property Name="salary" Type="int" Nullable="false" />
-          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="DOB" Type="datetime" />
           <Property Name="gender" Type="varchar(max)" Nullable="false" />
-          <Property Name="insurance" Type="varchar(max)" Nullable="false" />
+          <Property Name="insurance" Type="varchar(max)" />
           <Property Name="start_date" Type="datetime" Nullable="false" />
           <Property Name="terminated_date" Type="datetime" Nullable="false" />
           <Property Name="email" Type="varchar(max)" Nullable="false" />
           <Property Name="CNIC" Type="varchar(max)" Nullable="false" />
-          <Property Name="bonous" Type="int" Nullable="false" />
+          <Property Name="bonous" Type="int" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -169,6 +170,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="emp_id" Type="int" Nullable="false" />
           <Property Name="task" Type="varchar(max)" Nullable="false" />
+          <Property Name="status" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_attendence_empLogin">
           <End Role="empLogin" Type="Self.empLogin" Multiplicity="1" />
@@ -346,8 +348,7 @@
             <End Role="task" EntitySet="task" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CheckAndBalanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -383,18 +384,6 @@
           <NavigationProperty Name="customer" Relationship="Self.FK_booking_engine_customer" FromRole="booking_engine" ToRole="customer" />
           <NavigationProperty Name="product" Relationship="Self.FK_booking_engine_products" FromRole="booking_engine" ToRole="products" />
         </EntityType>
-        <EntityType Name="cart">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cus_id" Type="Int32" Nullable="false" />
-          <Property Name="pro_id" Type="Int32" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="total" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="customer" Relationship="Self.FK_cart_customer" FromRole="cart" ToRole="customer" />
-          <NavigationProperty Name="product" Relationship="Self.FK_cart_products" FromRole="cart" ToRole="products" />
-        </EntityType>
         <EntityType Name="company_details">
           <Key>
             <PropertyRef Name="company_id" />
@@ -415,11 +404,12 @@
           <Property Name="contact_no" Type="Int32" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="bills" Relationship="Self.FK_bills_customer" FromRole="customer" ToRole="bills" />
           <NavigationProperty Name="booking_engine" Relationship="Self.FK_booking_engine_customer" FromRole="customer" ToRole="booking_engine" />
-          <NavigationProperty Name="carts" Relationship="Self.FK_cart_customer" FromRole="customer" ToRole="cart" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_customer" FromRole="customer" ToRole="orders" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="carts" Relationship="CheckAndBalanceModel.FK_cart_customer" FromRole="customer" ToRole="cart" />
         </EntityType>
         <EntityType Name="empLogin">
           <Key>
@@ -442,14 +432,14 @@
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="task" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="insurance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="overtime" Type="Int32" Nullable="false" />
+          <Property Name="insurance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="overtime" Type="Int32" />
           <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="terminated_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CNIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="bonous" Type="Int32" Nullable="false" />
+          <Property Name="bonous" Type="Int32" />
           <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tasks" Relationship="Self.FK_task_employee" FromRole="employee" ToRole="task" />
+          <NavigationProperty Name="tasks" Relationship="CheckAndBalanceModel.FK_task_employee" FromRole="employee" ToRole="task" />
         </EntityType>
         <EntityType Name="manager">
           <Key>
@@ -460,14 +450,14 @@
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contact_no" Type="Int32" Nullable="false" />
           <Property Name="salary" Type="Int32" Nullable="false" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
           <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="insurance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="insurance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="terminated_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CNIC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="bonous" Type="Int32" Nullable="false" />
+          <Property Name="bonous" Type="Int32" />
         </EntityType>
         <EntityType Name="order">
           <Key>
@@ -504,11 +494,11 @@
           <Property Name="quality" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="bills" Relationship="Self.FK_bills_products" FromRole="products" ToRole="bills" />
           <NavigationProperty Name="booking_engine" Relationship="Self.FK_booking_engine_products" FromRole="products" ToRole="booking_engine" />
-          <NavigationProperty Name="carts" Relationship="Self.FK_cart_products" FromRole="products" ToRole="cart" />
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_products" FromRole="products" ToRole="orders" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="carts" Relationship="CheckAndBalanceModel.FK_cart_products" FromRole="product" ToRole="cart" />
         </EntityType>
         <EntityType Name="signup">
           <Key>
@@ -526,15 +516,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="createdDate" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="task">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="emp_id" Type="Int32" Nullable="false" />
-          <Property Name="task1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="employee" Relationship="Self.FK_task_employee" FromRole="task" ToRole="employee" />
         </EntityType>
         <Association Name="FK_attendence_empLogin">
           <End Role="empLogin" Type="Self.empLogin" Multiplicity="1" />
@@ -596,30 +577,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_cart_customer">
-          <End Role="customer" Type="Self.customer" Multiplicity="1" />
-          <End Role="cart" Type="Self.cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="customer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="cart">
-              <PropertyRef Name="cus_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cart_products">
-          <End Role="products" Type="Self.product" Multiplicity="1" />
-          <End Role="cart" Type="Self.cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="products">
-              <PropertyRef Name="pro_id" />
-            </Principal>
-            <Dependent Role="cart">
-              <PropertyRef Name="pro_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_orders_customer">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="orders" Type="Self.order" Multiplicity="*" />
@@ -629,18 +586,6 @@
             </Principal>
             <Dependent Role="orders">
               <PropertyRef Name="cus_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_task_employee">
-          <End Role="employee" Type="Self.employee" Multiplicity="1" />
-          <End Role="task" Type="Self.task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="employee">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="task">
-              <PropertyRef Name="emp_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -660,7 +605,6 @@
           <EntitySet Name="attendences" EntityType="Self.attendence" />
           <EntitySet Name="bills" EntityType="Self.bill" />
           <EntitySet Name="booking_engine" EntityType="Self.booking_engine" />
-          <EntitySet Name="carts" EntityType="Self.cart" />
           <EntitySet Name="company_details" EntityType="Self.company_details" />
           <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="empLogins" EntityType="Self.empLogin" />
@@ -670,7 +614,6 @@
           <EntitySet Name="payments" EntityType="Self.payment" />
           <EntitySet Name="products" EntityType="Self.product" />
           <EntitySet Name="signups" EntityType="Self.signup" />
-          <EntitySet Name="tasks" EntityType="Self.task" />
           <AssociationSet Name="FK_attendence_empLogin" Association="Self.FK_attendence_empLogin">
             <End Role="empLogin" EntitySet="empLogins" />
             <End Role="attendence" EntitySet="attendences" />
@@ -691,27 +634,87 @@
             <End Role="products" EntitySet="products" />
             <End Role="booking_engine" EntitySet="booking_engine" />
           </AssociationSet>
-          <AssociationSet Name="FK_cart_customer" Association="Self.FK_cart_customer">
-            <End Role="customer" EntitySet="customers" />
-            <End Role="cart" EntitySet="carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cart_products" Association="Self.FK_cart_products">
-            <End Role="products" EntitySet="products" />
-            <End Role="cart" EntitySet="carts" />
-          </AssociationSet>
           <AssociationSet Name="FK_orders_customer" Association="Self.FK_orders_customer">
             <End Role="customer" EntitySet="customers" />
             <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_task_employee" Association="Self.FK_task_employee">
-            <End Role="employee" EntitySet="employees" />
-            <End Role="task" EntitySet="tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_orders_products" Association="Self.FK_orders_products">
             <End Role="products" EntitySet="products" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
+          <EntitySet Name="carts" EntityType="CheckAndBalanceModel.cart" />
+          <EntitySet Name="tasks" EntityType="CheckAndBalanceModel.task" />
+          <AssociationSet Name="FK_cart_customer" Association="CheckAndBalanceModel.FK_cart_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cart_products" Association="CheckAndBalanceModel.FK_cart_products">
+            <End Role="product" EntitySet="products" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_task_employee" Association="CheckAndBalanceModel.FK_task_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cus_id" Type="Int32" Nullable="false" />
+          <Property Name="pro_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="CheckAndBalanceModel.FK_cart_customer" FromRole="cart" ToRole="customer" />
+          <NavigationProperty Name="product" Relationship="CheckAndBalanceModel.FK_cart_products" FromRole="cart" ToRole="product" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id" Type="Int32" Nullable="false" />
+          <Property Name="task1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employee" Relationship="CheckAndBalanceModel.FK_task_employee" FromRole="task" ToRole="employee" />
+        </EntityType>
+        <Association Name="FK_cart_customer">
+          <End Type="CheckAndBalanceModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="CheckAndBalanceModel.cart" Role="cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="cus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cart_products">
+          <End Type="CheckAndBalanceModel.product" Role="product" Multiplicity="1" />
+          <End Type="CheckAndBalanceModel.cart" Role="cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_task_employee">
+          <End Type="CheckAndBalanceModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="CheckAndBalanceModel.task" Role="task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -748,17 +751,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="carts">
-            <EntityTypeMapping TypeName="CheckAndBalanceModel.cart">
-              <MappingFragment StoreEntitySet="cart">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="cus_id" ColumnName="cus_id" />
-                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="total" ColumnName="total" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="company_details">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.company_details">
               <MappingFragment StoreEntitySet="company_details">
@@ -773,13 +765,14 @@
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.customer">
               <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="contact_no" ColumnName="contact_no" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="path" ColumnName="path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -795,6 +788,7 @@
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.employee">
               <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="salary" ColumnName="salary" />
@@ -809,7 +803,6 @@
                 <ScalarProperty Name="terminated_date" ColumnName="terminated_date" />
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="bonous" ColumnName="bonous" />
-                <ScalarProperty Name="path" ColumnName="path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -860,19 +853,21 @@
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.product">
               <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="pro_id" ColumnName="pro_id" />
                 <ScalarProperty Name="pro_name" ColumnName="pro_name" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="quality" ColumnName="quality" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="path" ColumnName="path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="signups">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.signup">
               <MappingFragment StoreEntitySet="signup">
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -883,17 +878,27 @@
                 <ScalarProperty Name="SecAnswer" ColumnName="SecAnswer" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="path" ColumnName="path" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="CheckAndBalanceModel.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+                <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tasks">
             <EntityTypeMapping TypeName="CheckAndBalanceModel.task">
               <MappingFragment StoreEntitySet="task">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="task1" ColumnName="task" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

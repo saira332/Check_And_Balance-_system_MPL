@@ -32,5 +32,21 @@ namespace MplProject.Controllers
         {
             return View();
         }
+        public ActionResult Tasks()
+        {
+            List<employee> em = (from a in _db.employees select a).ToList();
+            ViewBag.employees = em;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Tasks(int employe,task t)
+        {
+            employee c = _db.employees.Single(data => data.id == employe);
+            t.employee = c;
+            _db.tasks.Add(t);
+            _db.SaveChanges();
+
+            return RedirectToAction("Tasks", "Dashboard");
+        }
     }
 }

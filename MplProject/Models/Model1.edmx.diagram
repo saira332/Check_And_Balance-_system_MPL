@@ -4,31 +4,31 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="126186b55cb445d283888cc71fde7fa5" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="CheckAndBalanceModel.attendence" Width="1.5" PointX="11" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.bill" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.booking_engine" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.cart" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.company_details" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.customer" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.empLogin" Width="1.5" PointX="8.625" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.employee" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.manager" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.order" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.payment" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.product" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.signup" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckAndBalanceModel.task" Width="1.5" PointX="8" PointY="2.125" IsExpanded="true" />
+      <Diagram DiagramId="23974794f0244dbf93ebe5eba291376a" Name="Diagram1">
+        <EntityTypeShape EntityType="CheckAndBalanceModel.attendence" Width="1.5" PointX="8" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.bill" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.booking_engine" Width="1.5" PointX="2.625" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.company_details" Width="1.5" PointX="2.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.customer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.empLogin" Width="1.5" PointX="6.125" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.employee" Width="1.5" PointX="8.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.manager" Width="1.5" PointX="4.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.order" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.payment" Width="1.5" PointX="6.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.product" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.signup" Width="1.5" PointX="8.75" PointY="9.25" IsExpanded="true" />
         <AssociationConnector Association="CheckAndBalanceModel.FK_attendence_empLogin" ManuallyRouted="false" />
         <AssociationConnector Association="CheckAndBalanceModel.FK_bills_customer" ManuallyRouted="false" />
         <AssociationConnector Association="CheckAndBalanceModel.FK_bills_products" ManuallyRouted="false" />
         <AssociationConnector Association="CheckAndBalanceModel.FK_booking_engine_customer" ManuallyRouted="false" />
         <AssociationConnector Association="CheckAndBalanceModel.FK_booking_engine_products" ManuallyRouted="false" />
-        <AssociationConnector Association="CheckAndBalanceModel.FK_cart_customer" ManuallyRouted="false" />
-        <AssociationConnector Association="CheckAndBalanceModel.FK_cart_products" ManuallyRouted="false" />
         <AssociationConnector Association="CheckAndBalanceModel.FK_orders_customer" ManuallyRouted="false" />
-        <AssociationConnector Association="CheckAndBalanceModel.FK_task_employee" ManuallyRouted="false" />
         <AssociationConnector Association="CheckAndBalanceModel.FK_orders_products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.cart" Width="1.5" PointX="4.25" PointY="0.5" />
+        <EntityTypeShape EntityType="CheckAndBalanceModel.task" Width="1.5" PointX="12.25" PointY="7.625" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_cart_customer" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_cart_products" />
+        <AssociationConnector Association="CheckAndBalanceModel.FK_task_employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

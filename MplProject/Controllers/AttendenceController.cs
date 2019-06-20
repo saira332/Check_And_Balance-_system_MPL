@@ -21,11 +21,13 @@ namespace MplProject.Controllers
             {
                 attendenceList = _db.attendences.ToList()
             };
+            //var results = (from row in _db.customers select row).ToList();
             return View(AttnData);
         }
         [HttpPost]
-        public ActionResult AddAttendence(AttendenceDTO c)
+        public ActionResult AddAttendence( AttendenceDTO c)
         {
+            
             _db.attendences.Add(c.attendenceData);
             _db.SaveChanges();
             return RedirectToAction("Index", "Attendence");
@@ -39,12 +41,13 @@ namespace MplProject.Controllers
             return RedirectToAction("Index", "Attendence");
         }
         [HttpPut]
-        public ActionResult EditAttendence(AttendenceDTO s, int id)
+        public ActionResult EditAttendence( AttendenceDTO s, int id)
         {
-            attendence result = _db.attendences.Single(attendence => attendence.id== id);
+            
+            attendence result = _db.attendences.Single(attendence => attendence.id == id);
             result.id= s.attendenceData.id;
             result.date = s.attendenceData.date;
-            result.aattendence = s.attendenceData.aattendence;
+            result.aattendence= s.attendenceData.aattendence;
             result.emp_id = s.attendenceData.emp_id;
             _db.SaveChanges();
             return RedirectToAction("Index", "Attendence");

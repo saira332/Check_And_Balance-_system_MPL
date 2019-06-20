@@ -17,6 +17,7 @@ namespace MplProject.Models
         public int id { get; set; }
         public int emp_id { get; set; }
         public string task1 { get; set; }
+        public string status { get; set; }
     
         public virtual employee employee { get; set; }
     }

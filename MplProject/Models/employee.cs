@@ -29,11 +29,11 @@ namespace MplProject.Models
         public string address { get; set; }
         public string task { get; set; }
         public string insurance { get; set; }
-        public int overtime { get; set; }
+        public Nullable<int> overtime { get; set; }
         public System.DateTime start_date { get; set; }
         public System.DateTime terminated_date { get; set; }
         public string CNIC { get; set; }
-        public int bonous { get; set; }
+        public Nullable<int> bonous { get; set; }
         public string path { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
