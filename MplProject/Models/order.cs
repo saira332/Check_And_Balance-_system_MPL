@@ -16,14 +16,13 @@ namespace MplProject.Models
     {
         public int order_id { get; set; }
         public string status { get; set; }
-        public System.DateTime order_date { get; set; }
-        public System.DateTime sending_date { get; set; }
-        public System.DateTime receving_date { get; set; }
+        public int order_date { get; set; }
+        public int sending_date { get; set; }
+        public int receving_date { get; set; }
         public int no_of_order { get; set; }
         public int product_id { get; set; }
         public int cus_id { get; set; }
     
-        public virtual customer customer { get; set; }
         public virtual product product { get; set; }
     }
 }

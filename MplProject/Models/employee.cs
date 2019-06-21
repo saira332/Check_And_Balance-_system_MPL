@@ -17,10 +17,11 @@ namespace MplProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public employee()
         {
+            this.attendences = new HashSet<attendence>();
             this.tasks = new HashSet<task>();
         }
     
-        public int id { get; set; }
+        public int emp_id { get; set; }
         public string name { get; set; }
         public int salary { get; set; }
         public string gender { get; set; }
@@ -30,12 +31,14 @@ namespace MplProject.Models
         public string task { get; set; }
         public string insurance { get; set; }
         public Nullable<int> overtime { get; set; }
-        public System.DateTime start_date { get; set; }
-        public System.DateTime terminated_date { get; set; }
+        public Nullable<System.DateTime> start_date { get; set; }
+        public Nullable<System.DateTime> terminated_date { get; set; }
         public string CNIC { get; set; }
         public Nullable<int> bonous { get; set; }
         public string path { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<attendence> attendences { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<task> tasks { get; set; }
     }

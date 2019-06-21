@@ -15,10 +15,10 @@ namespace MplProject.Models
     public partial class attendence
     {
         public int id { get; set; }
-        public System.DateTime date { get; set; }
+        public int date { get; set; }
         public string aattendence { get; set; }
         public int emp_id { get; set; }
     
-        public virtual empLogin empLogin { get; set; }
+        public virtual employee employee { get; set; }
     }
 }

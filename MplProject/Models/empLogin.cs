@@ -14,17 +14,8 @@ namespace MplProject.Models
     
     public partial class empLogin
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public empLogin()
-        {
-            this.attendences = new HashSet<attendence>();
-        }
-    
         public int id { get; set; }
         public string username { get; set; }
         public int password { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<attendence> attendences { get; set; }
     }
 }

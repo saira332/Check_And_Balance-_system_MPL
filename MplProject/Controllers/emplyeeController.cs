@@ -23,11 +23,11 @@ namespace MplProject.Controllers
             return View(empData);
         }
         [HttpPost]
-        public ActionResult Addemplyee(HttpPostedFileBase file, employeeDTO c)
+        public ActionResult Addemplyee(employeeDTO c)
         {
-            string realpath = Server.MapPath("/images") + "//" + file.FileName;
-            file.SaveAs(realpath);
-            c.employeeData.path = file.FileName;
+            //string realpath = Server.MapPath("/images") + "//" + file.FileName;
+            //file.SaveAs(realpath);
+            //c.employeeData.path = file.FileName;
             _db.employees.Add(c.employeeData);
             _db.SaveChanges();
             return RedirectToAction("Index", "emplyee");
@@ -35,18 +35,18 @@ namespace MplProject.Controllers
         [HttpDelete]
         public ActionResult Deleteemplyee(int id)
         {
-            var result = _db.employees.Single(employee => employee.id == id);
+            var result = _db.employees.Single(employee => employee.emp_id == id);
             _db.employees.Remove(result);
             _db.SaveChanges();
             return RedirectToAction("Index", "emplyee");
         }
         [HttpPut]
-        public ActionResult Editemplyee(HttpPostedFileBase file, employeeDTO s, int id)
+        public ActionResult Editemplyee(employeeDTO s, int id)
         {
-            string realpath = Server.MapPath("/images") + "//" + file.FileName;
-            file.SaveAs(realpath);
-            employee result = _db.employees.Single(employee => employee.id == id);
-            result.id = s.employeeData.id;
+            //string realpath = Server.MapPath("/images") + "//" + file.FileName;
+            //file.SaveAs(realpath);
+            employee result = _db.employees.Single(employee => employee.emp_id == id);
+            result.emp_id = s.employeeData.emp_id;
             result.name = s.employeeData.name;
             result.salary = s.employeeData.salary;
             result.gender = s.employeeData.gender;
@@ -60,7 +60,7 @@ namespace MplProject.Controllers
             result.terminated_date = s.employeeData.terminated_date;
             result.CNIC = s.employeeData.CNIC;
             result.bonous = s.employeeData.bonous;
-            result.path = file.FileName;
+            //result.path = file.FileName;
             _db.SaveChanges();
             return RedirectToAction("Index", "emplyee");
         }

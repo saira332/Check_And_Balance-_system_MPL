@@ -20,7 +20,6 @@ namespace MplProject.Models
         public int price { get; set; }
         public int total { get; set; }
     
-        public virtual customer customer { get; set; }
         public virtual product product { get; set; }
     }
 }

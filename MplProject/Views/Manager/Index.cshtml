@@ -36,12 +36,8 @@
                         <th>salary</th>
                         <th>DOB</th>
                         <th>Gender</th>
-                        <th>Insurance</th>
-                        <th>start_date</th>
-                        <th>terminated_date</th>
                         <th>email</th>
                         <th>CNIC</th>
-                        <th>bonous</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,15 +57,11 @@
                             <td>@a.salary</td>
                             <td>@a.DOB</td>
                             <td>@a.gender</td>
-                            <td>@a.insurance</td>
-                            <td>@a.start_date</td>
-                            <td>@a.terminated_date</td>
                             <td>@a.email</td>
                             <td>@a.CNIC</td>
-                            <td>@a.bonous</td>
-                            <td><img src="~/images/@a.path" /></td>
+                            @*<td><img src="~/images/@a.path" /></td>*@
                             <td>
-                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.id','name':'@a.name', 'address' : '@a.address' , 'contact_no' : '@a.contact_no', 'salary' : '@a.salary', 'DOB' : '@a.DOB', 'Gender' : '@a.gender', 'Insurance' : '@a.insurance' , 'startDate' : '@a.start_date', 'TerminatedDate' : '@a.terminated_date', 'Email' : '@a.email', 'CNIC' : '@a.CNIC', 'Bonous' : '@a.bonous', 'path': '@a.path'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
+                                <a href="#editEmployeeModal" class="edit" onclick="edit({'id':'@a.id','name':'@a.name', 'address' : '@a.address' , 'contact_no' : '@a.contact_no', 'salary' : '@a.salary', 'DOB' : '@a.DOB', 'Gender' : '@a.gender', 'Insurance' : '@a.insurance' , 'startDate' : '@a.start_date', 'TerminatedDate' : '@a.terminated_date', 'Email' : '@a.email', 'CNIC' : '@a.CNIC', 'Bonous' : '@a.bonous'})" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">*&#xE254;</i></a>
                                 <a href="#deleteEmployeeModal" id="delete" class="delete" onclick="del(@a.id)" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
@@ -133,14 +125,6 @@
                         <div class="form-group">
                             <label>Insurance</label>
                             @Html.TextBoxFor(model => model.managerData.insurance, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label>StartDate</label>
-                            @Html.TextBoxFor(model => model.managerData.start_date, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label>TerminatedDate</label>
-                            @Html.TextBoxFor(model => model.managerData.terminated_date, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Email</label>
@@ -285,6 +269,7 @@
                 document.getElementById("contact_no").value = data.contact_no;
                 document.getElementById("salary").value = data.salary;
                 document.getElementById("Gender").value = data.Gender;
+                document.getElementById("DOB").value = data.DOB;
                 document.getElementById("Insurance").value = data.insueance;
                 document.getElementById("StartDate").value = data.startDate;
                 document.getElementById("TerminatedDate").value = data.terminatedDate;
@@ -292,8 +277,8 @@
                 document.getElementById("CNIC").value = data.CNIC;
                 document.getElementById("bonous").value = data.bonous;
 
-                img = "~/images/" + data.image;
-                document.getElementById("cimage").src = img;
+                //img = "~/images/" + data.image;
+                //document.getElementById("cimage").src = img;
 
 
             }
