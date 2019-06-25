@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = "ImageUpload";
 }
+@if (ViewBag.Error != null)
+{
+    <h2> @ViewBag.Error </h2>
+}
+
 <center>
     <br />
     <img height="150" width="150" src="~/images/@Model.path" />

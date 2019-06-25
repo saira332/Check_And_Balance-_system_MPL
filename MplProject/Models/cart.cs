@@ -15,7 +15,7 @@ namespace MplProject.Models
     public partial class cart
     {
         public int id { get; set; }
-        public int cus_id { get; set; }
+        public string cus_id { get; set; }
         public int pro_id { get; set; }
         public int price { get; set; }
         public int total { get; set; }

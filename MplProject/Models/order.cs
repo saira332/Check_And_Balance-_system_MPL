@@ -16,12 +16,11 @@ namespace MplProject.Models
     {
         public int order_id { get; set; }
         public string status { get; set; }
-        public int order_date { get; set; }
-        public int sending_date { get; set; }
-        public int receving_date { get; set; }
-        public int no_of_order { get; set; }
-        public int product_id { get; set; }
-        public int cus_id { get; set; }
+        public Nullable<int> order_date { get; set; }
+        public Nullable<int> sending_date { get; set; }
+        public Nullable<int> receving_date { get; set; }
+        public Nullable<int> product_id { get; set; }
+        public string cus_id { get; set; }
     
         public virtual product product { get; set; }
     }

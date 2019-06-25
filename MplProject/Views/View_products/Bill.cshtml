@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Bill";
+    Layout = null;
+}
+<html>
+<head>
+    <style>
+        body{
+            align-items: center;
+            width: 500px;
+            margin: auto;
+        }
+        h1,h2,h3,table{
+            align-content: center;
+            text-align :center;
+        }
+        table,tr,th,td{
+            padding: 3px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <a href="/Home/Index"><< back</a>
+
+    <h1>Company Name</h1>
+    <p>**************************************************************************</p>
+    <h2>Bill</h2>
+    <h3>Date</h3>
+    <br />
+    <br />
+    <br />
+    <p>**************************************************************************</p>
+    <br />
+    <br />
+    <centre>
+        <table>
+            <thead border="1">
+                <tr>
+                    <th>User</th>
+                    <th>Total Price</th>
+                    <th>Paid Price</th>
+                    <th>Return Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Session["username"]</td>
+                    <td>@Session["total"]</td>
+                    <td>@Session["pay_price"]</td>
+                    <td>@Session["return_price"]</td>
+                </tr>
+            </tbody>
+        </table>
+    </centre>
+
+
+</body>
+</html>
+
+

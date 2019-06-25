@@ -9,11 +9,11 @@ using System.Web.Security;
 
 namespace MplProject.Controllers
 {
-    public class loginController : Controller
+    public class LoginViewController : Controller
     {
         // GET: login
         CheckAndBalanceEntities _db;
-        public loginController()
+        public LoginViewController()
         {
             _db = new CheckAndBalanceEntities();
         }
@@ -31,36 +31,49 @@ namespace MplProject.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            if(Session["username"] != null)
+            if (Session["username"] != null)
             {
-               return RedirectToAction("Index", "Profile", new {username = Session["username"].ToString() });
-            } 
+                return RedirectToAction("Index", "Profile", new { username = Session["username"].ToString() });
+            }
             else
             {
                 return View();
             }
-            
+
         }
+
         [HttpPost]
         public ActionResult userLogin(string name, string password, string status)
         {
             var results = (from row in _db.signups select row);
-            foreach(var i in results)
+            foreach (var i in results)
             {
-                if (name == i.username  && password == i.password)
+                if (name == i.username && password == i.password)
                 {
-                    if(status == "Admin")
+                    if (status == "Admin")
                     {
                         Session["username"] = name;
                         return RedirectToAction("Index", "Dashboard");
                     }
+                    else if (status == "Customer")
+                    {
+                        Session["username"] = name;
+                        return RedirectToAction("Index", "View_products");
+                    }
+                    else if(status == "Employee")
+                    {
+                        Session["username"] = name;
+                        return RedirectToAction("Index", "EmpDashboard");
+                    }
                     else
                     {
                         Session["username"] = name;
-
                         return RedirectToAction("Index", "Profile", new { username = name });
                     }
-                   
+                }
+                else
+                {
+                    ViewBag.Error = "Please enter valid username and password";
                 }
             }
 
@@ -71,7 +84,7 @@ namespace MplProject.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Clear();
-            return RedirectToAction("Index", "login");
+            return RedirectToAction("Index", "LoginView");
         }
         [AllowAnonymous]
         public ActionResult Facebook()

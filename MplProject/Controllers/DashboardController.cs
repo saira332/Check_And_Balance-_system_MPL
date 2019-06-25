@@ -28,11 +28,13 @@ namespace MplProject.Controllers
             var customers = (from a in _db.customers select a).ToList();
             var products = (from a in _db.products select a).ToList();
             var employe = (from a in _db.employees select a).ToList();
+            var order = (from a in _db.orders select a).ToList();
 
             DashboardItems d = new DashboardItems();
             d.customerList = customers;
             d.productList = products;
             d.employeeList = employe;
+            d.orderList = order;
 
 
 
@@ -71,6 +73,11 @@ namespace MplProject.Controllers
                 userList = _db.signups.ToList()
             };
             return View(user);
+        }
+        public ActionResult orders()
+        {
+            var result = (from k in _db.orders select k).ToList();
+            return View(result);
         }
 
     }

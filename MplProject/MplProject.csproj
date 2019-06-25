@@ -2168,15 +2168,17 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EmpDashboardController.cs" />
     <Compile Include="Controllers\emplyeeController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\LoginViewController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\paymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\signupController.cs" />
+    <Compile Include="Controllers\View_productsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2293,6 +2295,14 @@
     <Content Include="Views\emplyee\Index.cshtml" />
     <Content Include="Views\Dashboard\Tasks.cshtml" />
     <Content Include="Views\Dashboard\EmailLog.cshtml" />
+    <Content Include="Views\LoginView\Index.cshtml" />
+    <Content Include="Views\View_products\Index.cshtml" />
+    <Content Include="Views\View_products\Cart.cshtml" />
+    <Content Include="Views\View_products\Orders.cshtml" />
+    <Content Include="Views\View_products\Payement.cshtml" />
+    <Content Include="Views\View_products\Bill.cshtml" />
+    <Content Include="Views\EmpDashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\orders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

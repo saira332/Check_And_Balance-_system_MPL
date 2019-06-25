@@ -248,6 +248,9 @@
                                 <li class="active">
                                     @Html.ActionLink("Home", "Index", "Home")
                                 </li>
+                                <span>     </span>      <a href="/LoginView/Index">Profile</a>
+                             <span>     </span>   <a href="/LoginView/logout">Logout</a>
+                               
                                 <li>
                                     <a href="#">Pages</a>
                                     <ul class="dropdown">
@@ -260,8 +263,7 @@
                                         <li><a href="left-sidebar.html">Left Sidebar</a></li>
                                         <li><a href="right-sidebar.html">Right Sidebar</a></li>
                                         <li><a href="fullwidth.html">Full Width</a></li>*@
-                                        <li><a href="/login/Index">Login</a></li>
-                                        <li>@Html.ActionLink("Login", "Index", "login")</li>
+                                        <li>@Html.ActionLink("Login", "Index", "LoginView")</li>
                                         <li>@Html.ActionLink("SignUp", "Index", "signup")</li>
                                         @*<li><a href="contact.html">Contact</a></li>*@
                                     </ul>
@@ -269,10 +271,9 @@
                                 <li>
                                     <a href="#">Shop</a>
                                     <ul class="dropdown">
-                                        <li><a href="digital-download.html">Products Page</a></li>
-                                        <li><a href="single-product.html">Single Product</a></li>
+                                        <li><a href="/View_products/Index">Products Page</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="account.html">Account Page</a></li>
+                                        
                                         <li><a href="support.html">Support Center</a></li>
                                     </ul>
                                 </li>
@@ -299,6 +300,7 @@
                                     @Html.ActionLink("profile", "Index", "Profile")
                                 </li>*@
                             </ul>
+                            <h3>Hi! @Session["username"]</h3>
                         </div>
                     </div>
                     <!-- nav -->

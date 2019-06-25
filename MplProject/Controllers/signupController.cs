@@ -36,14 +36,23 @@ namespace MplProject.Controllers
         public ActionResult ImageUpload(HttpPostedFileBase file,signup u)
         {
             string realpath = Server.MapPath("/images") + "//" + file.FileName;
-            file.SaveAs(realpath);
+            if(realpath == null)
+            {
+                ViewBag.Error = "Please choose an image";
+                return View();
+            }
+            else
+            {
+                file.SaveAs(realpath);
 
-            var data = _db.signups.Single(signup => signup.id == u.id);
-            //signup u = new signup();
-            u.path = file.FileName;
-            data.path = u.path;
-            _db.SaveChanges();
-            return RedirectToAction("ImageUpload", "signup",new { id=u.id});
+                var data = _db.signups.Single(signup => signup.id == u.id);
+                //signup u = new signup();
+                u.path = file.FileName;
+                data.path = u.path;
+                _db.SaveChanges();
+                return RedirectToAction("ImageUpload", "signup", new { id = u.id });
+            }
+           
         }
     }
 

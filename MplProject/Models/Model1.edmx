@@ -37,7 +37,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cus_id" Type="int" Nullable="false" />
+          <Property Name="cus_id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="pro_id" Type="int" Nullable="false" />
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="total" Type="int" Nullable="false" />
@@ -117,12 +117,11 @@
           </Key>
           <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="status" Type="varchar(max)" Nullable="false" />
-          <Property Name="order_date" Type="int" Nullable="false" />
-          <Property Name="sending_date" Type="int" Nullable="false" />
-          <Property Name="receving_date" Type="int" Nullable="false" />
-          <Property Name="no_of_order" Type="int" Nullable="false" />
-          <Property Name="product_id" Type="int" Nullable="false" />
-          <Property Name="cus_id" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="int" />
+          <Property Name="sending_date" Type="int" />
+          <Property Name="receving_date" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="cus_id" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="payments">
           <Key>
@@ -245,7 +244,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_orders_products">
-          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="products">
@@ -358,7 +357,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cus_id" Type="Int32" Nullable="false" />
+          <Property Name="cus_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pro_id" Type="Int32" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="total" Type="Int32" Nullable="false" />
@@ -443,12 +442,11 @@
           </Key>
           <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="order_date" Type="Int32" Nullable="false" />
-          <Property Name="sending_date" Type="Int32" Nullable="false" />
-          <Property Name="receving_date" Type="Int32" Nullable="false" />
-          <Property Name="no_of_order" Type="Int32" Nullable="false" />
-          <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="cus_id" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="Int32" />
+          <Property Name="sending_date" Type="Int32" />
+          <Property Name="receving_date" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="cus_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="product" Relationship="Self.FK_orders_products" FromRole="orders" ToRole="products" />
         </EntityType>
         <EntityType Name="payment">
@@ -589,7 +587,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_orders_products">
-          <End Role="products" Type="Self.product" Multiplicity="1" />
+          <End Role="products" Type="Self.product" Multiplicity="0..1" />
           <End Role="orders" Type="Self.order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="products">
@@ -777,7 +775,6 @@
                 <ScalarProperty Name="order_date" ColumnName="order_date" />
                 <ScalarProperty Name="sending_date" ColumnName="sending_date" />
                 <ScalarProperty Name="receving_date" ColumnName="receving_date" />
-                <ScalarProperty Name="no_of_order" ColumnName="no_of_order" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="cus_id" ColumnName="cus_id" />
               </MappingFragment>
