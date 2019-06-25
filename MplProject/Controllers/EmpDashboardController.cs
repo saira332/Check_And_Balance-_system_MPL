@@ -20,5 +20,27 @@ namespace MplProject.Controllers
             var result = (from k in _db.tasks select k).ToList();
             return View(result);
         }
+        public ActionResult dash()
+        {
+            if(Session["username"]== null)
+            {
+                return RedirectToAction("Index", "LoginView");
+            }
+            else
+            {
+                string name = Session["username"].ToString();
+                var result = _db.signups.Single(signup => signup.username == name);
+                if (result.status == "Admin")
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else if (result.status == "Employee")
+                {
+                    return RedirectToAction("Index", "EmpDashboard");
+                }
+                return RedirectToAction("Index", "Home");
+            }
+           
+        }
     }
 }

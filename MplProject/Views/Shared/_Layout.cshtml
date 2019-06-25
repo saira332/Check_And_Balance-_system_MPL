@@ -245,11 +245,11 @@
                     <div id="nav" class="right">
                         <div class="container clearfix">
                             <ul id="jetmenu" class="jetmenu blue">
-                                <li class="active">
+                                <li>
                                     @Html.ActionLink("Home", "Index", "Home")
                                 </li>
-                                <span>     </span>      <a href="/LoginView/Index">Profile</a>
-                             <span>     </span>   <a href="/LoginView/logout">Logout</a>
+                                     <a href="/LoginView/Index" style="float: right;">Profile</a><br />
+                            <a href="/LoginView/logout"  style="float: right;">Logout</a>
                                
                                 <li>
                                     <a href="#">Pages</a>
@@ -300,7 +300,8 @@
                                     @Html.ActionLink("profile", "Index", "Profile")
                                 </li>*@
                             </ul>
-                            <h3>Hi! @Session["username"]</h3>
+                            <h3 style="float: right;">Hi! @Session["username"]</h3>
+                            @Html.ActionLink("Dashboard", "dash","EmpDashboard")
                         </div>
                     </div>
                     <!-- nav -->

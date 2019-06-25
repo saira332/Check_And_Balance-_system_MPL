@@ -48,7 +48,7 @@ namespace MplProject.Controllers
             var results = (from row in _db.signups select row);
             foreach (var i in results)
             {
-                if (name == i.username && password == i.password)
+                if (name == i.username && password == i.password && status == i.status)
                 {
                     if (status == "Admin")
                     {
@@ -74,10 +74,11 @@ namespace MplProject.Controllers
                 else
                 {
                     ViewBag.Error = "Please enter valid username and password";
+                 
                 }
             }
+            return RedirectToAction("Index","LoginView");
 
-            return View();
         }
 
         public ActionResult logout()
